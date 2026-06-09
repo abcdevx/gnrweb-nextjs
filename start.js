@@ -1,21 +1,19 @@
 // Passenger-compatible Next.js server for cPanel CloudLinux
-const { createServer } = require('http')
-const { parse } = require('url')
+const http = require('http')
 const next = require('next')
 
-const port = parseInt(process.env.PORT || '3000', 10)
-const dev = false
-
-const app = next({ dev, dir: __dirname })
+const app = next({ dev: false })
 const handle = app.getRequestHandler()
+const port = process.env.PORT || 3000
 
 app.prepare().then(() => {
-  createServer((req, res) => {
-    handle(req, res, parse(req.url, true))
-  }).listen(port, '0.0.0.0', () => {
+  http.createServer((req, res) => {
+    handle(req, res)
+  }).listen(port, (err) => {
+    if (err) throw err
     console.log(`> Ready on port ${port}`)
   })
-}).catch((err) => {
-  console.error('Next.js failed to start:', err)
-  process.exit(1)
 })
+
+process.on('SIGINT', () => process.exit(0))
+process.on('SIGTERM', () => process.exit(0))
