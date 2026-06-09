@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/goodsmux/staging.goodnrowdy.com
+    - /bin/cp -R . $DEPLOYPATH
+    - export HOME=/home/goodsmux
+    - cd $DEPLOYPATH && /home/goodsmux/nodevenv/staging.goodnrowdy.com/20/bin/npm install
+    - cd $DEPLOYPATH && /home/goodsmux/nodevenv/staging.goodnrowdy.com/20/bin/npm run build
