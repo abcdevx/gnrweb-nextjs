@@ -2,6 +2,6 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/goodsmux/staging.goodnrowdy.com
-    - /bin/cp -R . $DEPLOYPATH
+    - /usr/bin/rsync -aq --exclude='.git/' --exclude='node_modules/' . $DEPLOYPATH
     - export HOME=/home/goodsmux
     - cd $DEPLOYPATH && /home/goodsmux/nodevenv/staging.goodnrowdy.com/20/bin/npm install --omit=dev
