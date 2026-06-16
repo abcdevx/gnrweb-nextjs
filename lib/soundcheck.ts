@@ -15,15 +15,18 @@ const BASE_URL = process.env.SOUNDCHECK_API_URL?.replace(/\/$/, '')
 const API_KEY = process.env.SOUNDCHECK_API_KEY
 
 function getHeaders(): Record<string, string> {
-  if (!API_KEY) throw new Error('SOUNDCHECK_API_KEY is not set')
   return {
-    'x-api-key': API_KEY,
+    'x-api-key': API_KEY ?? '',
     'Content-Type': 'application/json',
   }
 }
 
+function isConfigured(): boolean {
+  return Boolean(BASE_URL && API_KEY)
+}
+
 export async function getShows(): Promise<Show[]> {
-  if (!BASE_URL) throw new Error('SOUNDCHECK_API_URL is not set')
+  if (!isConfigured()) return []
   const res = await fetch(`${BASE_URL}/api/public/shows`, {
     headers: getHeaders(),
     next: { revalidate: 300 },
@@ -34,7 +37,7 @@ export async function getShows(): Promise<Show[]> {
 }
 
 export async function getMembers(): Promise<BandMember[]> {
-  if (!BASE_URL) throw new Error('SOUNDCHECK_API_URL is not set')
+  if (!isConfigured()) return []
   const res = await fetch(`${BASE_URL}/api/public/members`, {
     headers: getHeaders(),
     next: { revalidate: 3600 },
