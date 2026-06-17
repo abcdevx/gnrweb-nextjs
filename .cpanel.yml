@@ -2,6 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/goodsmux/staging.goodnrowdy.com
+    - rm -rf $DEPLOYPATH/.next
     - /usr/bin/rsync -aq --exclude='.git/' --exclude='node_modules/' . $DEPLOYPATH
     - chmod -R u+rX $DEPLOYPATH/.next
     - export HOME=/home/goodsmux
