@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { siteConfig } from '@/config/site'
 import { getShows } from '@/lib/soundcheck'
 import type { Show } from '@/types'
@@ -41,27 +42,63 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 bg-[var(--gnr-bg)]"
-        style={{ background: 'radial-gradient(ellipse at 50% 60%, #1f1a12 0%, #0f0e0d 70%)' }}
-      >
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 2px,#fff 2px,#fff 3px)', backgroundSize: '100% 4px' }}
-        />
-        <p className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-[0.35em] text-[var(--gnr-brand)] mb-6">
-          Central Illinois
-        </p>
-        <h1 className="text-6xl sm:text-7xl md:text-8xl font-[family-name:var(--gnr-font-display)] font-bold uppercase tracking-tight text-white mb-4">
-          {siteConfig.hero.headline}
-        </h1>
-        <p className="font-[family-name:var(--gnr-font-display)] text-base sm:text-lg uppercase tracking-widest text-[var(--gnr-muted)] mb-10">
-          {siteConfig.hero.tagline}
-        </p>
-        <Link
-          href={siteConfig.hero.ctaHref}
-          className="inline-block font-[family-name:var(--gnr-font-display)] uppercase tracking-widest text-sm px-8 py-3 bg-[var(--gnr-brand)] text-[var(--gnr-bg)] font-bold hover:bg-[var(--gnr-brand-dark)] transition-colors"
-        >
-          {siteConfig.hero.ctaLabel}
-        </Link>
+      <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 overflow-hidden" style={{ backgroundColor: 'rgb(4,2,0)' }}>
+
+        {/* Background video */}
+        <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-40">
+          <source src="/montage.mp4" type="video/mp4" />
+        </video>
+
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/50" />
+
+        {/* Vignette */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.85) 100%)' }} />
+
+        {/* Scanlines */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 2px,#fff 2px,#fff 3px)', backgroundSize: '100% 4px' }} />
+
+        {/* Hero content */}
+        <div className="relative flex flex-col items-center gap-4">
+          <h1 className="text-7xl sm:text-8xl md:text-9xl font-[family-name:var(--gnr-font-display)] font-bold uppercase tracking-tight text-white leading-none animate-[fadeUp_0.9s_ease-out_0.4s_both]">
+            {siteConfig.hero.headline}
+          </h1>
+          <p className="font-[family-name:var(--gnr-font-display)] text-sm sm:text-base uppercase tracking-[0.3em] text-[var(--gnr-muted)] animate-[fadeUp_0.9s_ease-out_0.7s_both]">
+            {siteConfig.hero.tagline}
+          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 animate-[fadeUp_0.9s_ease-out_1.1s_both]">
+            <Link
+              href={siteConfig.hero.ctaHref}
+              className="btn-gold inline-block font-[family-name:var(--gnr-font-display)] uppercase tracking-widest text-sm px-10 py-3 hover:opacity-90 transition-opacity"
+            >
+              {siteConfig.hero.ctaLabel}
+            </Link>
+            <Link
+              href="/book"
+              className="inline-block font-[family-name:var(--gnr-font-display)] uppercase tracking-widest text-sm px-10 py-3 border border-[var(--gnr-brand)] text-[var(--gnr-brand)] hover:bg-[var(--gnr-brand)] hover:text-black transition-colors"
+            >
+              Book The Band
+            </Link>
+          </div>
+
+          {/* Social icons */}
+          <div className="flex items-center gap-6 mt-4 animate-[fadeIn_1s_ease-out_1.4s_both]">
+            {siteConfig.social.instagram && (
+              <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="text-[var(--gnr-muted)] hover:text-[var(--gnr-brand)] transition-colors font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest">IG</a>
+            )}
+            {siteConfig.social.facebook && (
+              <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" className="text-[var(--gnr-muted)] hover:text-[var(--gnr-brand)] transition-colors font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest">FB</a>
+            )}
+            {siteConfig.social.tiktok && (
+              <a href={siteConfig.social.tiktok} target="_blank" rel="noopener noreferrer" className="text-[var(--gnr-muted)] hover:text-[var(--gnr-brand)] transition-colors font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest">TT</a>
+            )}
+            {siteConfig.social.spotify && (
+              <a href={siteConfig.social.spotify} target="_blank" rel="noopener noreferrer" className="text-[var(--gnr-muted)] hover:text-[var(--gnr-brand)] transition-colors font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest">Spotify</a>
+            )}
+          </div>
+        </div>
+
+
       </section>
 
       {/* Bio teaser */}
@@ -123,7 +160,7 @@ export default async function HomePage() {
           <div className="text-center">
             <Link
               href="/shows"
-              className="inline-block font-[family-name:var(--gnr-font-display)] uppercase tracking-widest text-sm px-8 py-3 bg-[var(--gnr-brand)] text-[var(--gnr-bg)] font-bold hover:bg-[var(--gnr-brand-dark)] transition-colors"
+              className="btn-gold inline-block font-[family-name:var(--gnr-font-display)] uppercase tracking-widest text-sm px-8 py-3 hover:opacity-90 transition-opacity"
             >
               See All Shows
             </Link>

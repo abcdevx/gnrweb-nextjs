@@ -1,21 +1,57 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand:       #c9923a;
-  --color-brand-dark:  #a87530;
+  --color-brand:       #C8A951;
+  --color-brand-dark:  #A08A30;
 }
 
 :root {
-  --gnr-brand:       #c9923a;
-  --gnr-brand-dark:  #a87530;
-  --gnr-bg:          #0f0e0d;
-  --gnr-surface:     #1a1916;
-  --gnr-surface-2:   #242220;
-  --gnr-border:      #2e2c29;
-  --gnr-text:        #e8e0d4;
-  --gnr-muted:       #7a7166;
+  --gnr-brand:        #C8A951;
+  --gnr-brand-dark:   #A08A30;
+  --gnr-brand-light:  #E8D080;
+  --gnr-bg:           rgb(4,2,0);
+  --gnr-surface:      #110e08;
+  --gnr-surface-2:    #1a1508;
+  --gnr-border:       #2e2410;
+  --gnr-text:         #f0e6cc;
+  --gnr-muted:        #7a6a45;
   --gnr-font-display: 'Oswald', sans-serif;
   --gnr-font-body:    'Source Serif 4', serif;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(8px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.btn-gold {
+  background: linear-gradient(
+    90deg,
+    #A08A30 0%,
+    #C8A951 30%,
+    #F0DC90 50%,
+    #C8A951 70%,
+    #A08A30 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+  color: rgb(4,2,0);
+  font-weight: 700;
 }
 
 *, *::before, *::after {

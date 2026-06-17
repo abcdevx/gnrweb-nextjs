@@ -16,15 +16,20 @@ export const siteConfig = {
     state: 'TN',
   },
 
-  nav: [
-    { label: 'Home', href: '/' },
-    { label: 'Shows', href: '/shows' },
-    { label: 'About', href: '/about' },
-  ],
+  nav: {
+    left: [
+      { label: 'About', href: '/about' },
+      { label: 'Shows', href: '/shows' },
+    ],
+    right: [
+      { label: 'Merch', href: '/merch' },
+      { label: 'Book', href: '/book' },
+    ],
+  },
 
   hero: {
-    headline: 'Good n\' Rowdy',
-    tagline: 'Your favorite cover band',
+    headline: 'Good N\' Rowdy Band',
+    tagline: 'Hometown Country Rock Built For Any Stage',
     ctaLabel: 'See Our Shows',
     ctaHref: '/shows',
   },
