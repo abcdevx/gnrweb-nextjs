@@ -1,6 +1,0 @@
-1:"$Sreact.fragment"
-2:I[22016,["/_next/static/chunks/3rdqn8rx95pw7.js","/_next/static/chunks/14mrh2-p_w84d.js"],""]
-3:I[97367,["/_next/static/chunks/3rdqn8rx95pw7.js","/_next/static/chunks/14mrh2-p_w84d.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[[["$","section",null,{"children":[["$","h1",null,{"children":"Good n' Rowdy"}],["$","p",null,{"children":"Your favorite cover band"}],["$","$L2",null,{"href":"/shows","children":"See Our Shows"}]]}],["$","section",null,{"children":[["$","p",null,{"children":"We play the songs you love — louder than you remember."}],["$","div",null,{"children":[["$","span","Country",{"children":"Country"}],["$","span","Rock",{"children":"Rock"}],["$","span","Country Rock",{"children":"Country Rock"}],["$","span","Cover Band",{"children":"Cover Band"}]]}],["$","p",null,{"children":["Nashville",", ","TN"]}],["$","$L2",null,{"href":"/about","children":"Learn More"}]]}],["$","section",null,{"children":[["$","h2",null,{"children":"Upcoming Shows"}],["$","p",null,{"children":"No upcoming shows at this time. Check back soon!"}],["$","$L2",null,{"href":"/shows","children":"See All Shows"}]]}]],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"xNdKWiqf5idz5KVsnnFME"}
-5:null
