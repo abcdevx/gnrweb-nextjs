@@ -3,15 +3,19 @@
 @theme {
   --color-brand:       #c9923a;
   --color-brand-dark:  #a87530;
-  --color-bg:          #0f0e0d;
-  --color-surface:     #1a1916;
-  --color-surface-2:   #242220;
-  --color-border:      #2e2c29;
-  --color-text:        #e8e0d4;
-  --color-muted:       #7a7166;
+}
 
-  --font-display: 'Oswald', sans-serif;
-  --font-body:    'Source Serif 4', serif;
+:root {
+  --gnr-brand:       #c9923a;
+  --gnr-brand-dark:  #a87530;
+  --gnr-bg:          #0f0e0d;
+  --gnr-surface:     #1a1916;
+  --gnr-surface-2:   #242220;
+  --gnr-border:      #2e2c29;
+  --gnr-text:        #e8e0d4;
+  --gnr-muted:       #7a7166;
+  --gnr-font-display: 'Oswald', sans-serif;
+  --gnr-font-body:    'Source Serif 4', serif;
 }
 
 *, *::before, *::after {
@@ -23,16 +27,16 @@ html {
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body);
+  background-color: var(--gnr-bg);
+  color: var(--gnr-text);
+  font-family: var(--gnr-font-body);
   font-size: 1rem;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-display);
+  font-family: var(--gnr-font-display);
   font-weight: 700;
   letter-spacing: 0.04em;
   line-height: 1.1;

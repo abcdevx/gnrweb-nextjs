@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className="flex flex-col min-h-screen">
         <SiteNav />
         <main className="flex-1">{children}</main>
-        <footer className="border-t border-[var(--color-border)] py-8 text-center text-sm text-[var(--color-muted)]">
+        <footer className="border-t border-[var(--gnr-border)] py-8 text-center text-sm text-[var(--gnr-muted)]">
           <p>© {new Date().getFullYear()} Good n&apos; Rowdy. All rights reserved.</p>
         </footer>
       </body>

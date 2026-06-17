@@ -3,11 +3,11 @@ import { siteConfig } from '@/config/site'
 
 export default function SiteNav() {
   return (
-    <nav className="sticky top-0 z-50 bg-[var(--color-bg)] border-b border-[var(--color-border)]">
+    <nav className="sticky top-0 z-50 bg-[var(--gnr-bg)] border-b border-[var(--gnr-border)]">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link
           href="/"
-          className="font-[family-name:var(--font-display)] font-bold text-lg uppercase tracking-widest text-[var(--color-brand)] hover:text-[var(--color-brand-dark)] transition-colors"
+          className="font-[family-name:var(--gnr-font-display)] font-bold text-lg uppercase tracking-widest text-[var(--gnr-brand)] hover:text-[var(--gnr-brand-dark)] transition-colors"
         >
           {siteConfig.bandName}
         </Link>
@@ -16,7 +16,7 @@ export default function SiteNav() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="font-[family-name:var(--font-display)] text-sm uppercase tracking-widest text-[var(--color-text)] hover:text-[var(--color-brand)] transition-colors"
+                className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-widest text-[var(--gnr-text)] hover:text-[var(--gnr-brand)] transition-colors"
               >
                 {item.label}
               </Link>

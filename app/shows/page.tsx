@@ -51,7 +51,7 @@ export default async function ShowsPage() {
   return (
     <>
       {/* Page header */}
-      <div className="border-b border-[var(--color-border)] py-16 px-6 text-center bg-[var(--color-surface)]">
+      <div className="border-b border-[var(--gnr-border)] py-16 px-6 text-center bg-[var(--gnr-surface)]">
         <h1 className="text-5xl sm:text-6xl">Shows</h1>
       </div>
 
@@ -59,35 +59,35 @@ export default async function ShowsPage() {
         <div className="max-w-3xl mx-auto">
 
           {error && (
-            <p className="text-center text-[var(--color-muted)] mb-8">{error}</p>
+            <p className="text-center text-[var(--gnr-muted)] mb-8">{error}</p>
           )}
 
           {/* Upcoming */}
           <div className="mb-16">
-            <h2 className="text-2xl mb-8 pb-3 border-b border-[var(--color-border)]">Upcoming</h2>
+            <h2 className="text-2xl mb-8 pb-3 border-b border-[var(--gnr-border)]">Upcoming</h2>
             {upcoming.length === 0 ? (
-              <p className="text-[var(--color-muted)]">No upcoming shows scheduled. Check back soon!</p>
+              <p className="text-[var(--gnr-muted)]">No upcoming shows scheduled. Check back soon!</p>
             ) : (
               <ul className="space-y-4">
                 {upcoming.map((show) => (
                   <li
                     key={show.id}
-                    className="border-l-2 border-[var(--color-brand)] pl-5 py-4 bg-[var(--color-surface)] flex flex-col gap-1"
+                    className="border-l-2 border-[var(--gnr-brand)] pl-5 py-4 bg-[var(--gnr-surface)] flex flex-col gap-1"
                   >
-                    <span className="font-[family-name:var(--font-display)] text-sm uppercase tracking-wider text-[var(--color-brand)]">
+                    <span className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-wider text-[var(--gnr-brand)]">
                       {formatDate(show.event_date)}
                     </span>
-                    <span className="font-[family-name:var(--font-body)] text-lg text-[var(--color-text)] font-semibold">
+                    <span className="font-[family-name:var(--gnr-font-body)] text-lg text-[var(--gnr-text)] font-semibold">
                       {show.venue_name ?? 'Venue TBA'}
                     </span>
                     {show.event_time && (
-                      <span className="text-sm text-[var(--color-muted)]">
+                      <span className="text-sm text-[var(--gnr-muted)]">
                         {formatTime(show.event_time)}
                         {show.event_end_time && ` – ${formatTime(show.event_end_time)}`}
                       </span>
                     )}
                     {show.notes && (
-                      <span className="text-sm text-[var(--color-muted)] italic">{show.notes}</span>
+                      <span className="text-sm text-[var(--gnr-muted)] italic">{show.notes}</span>
                     )}
                   </li>
                 ))}
@@ -98,17 +98,17 @@ export default async function ShowsPage() {
           {/* Past Shows */}
           {past.length > 0 && (
             <div>
-              <h2 className="text-2xl mb-8 pb-3 border-b border-[var(--color-border)]">Past Shows</h2>
+              <h2 className="text-2xl mb-8 pb-3 border-b border-[var(--gnr-border)]">Past Shows</h2>
               <ul className="space-y-2">
                 {past.map((show) => (
                   <li
                     key={show.id}
-                    className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6 py-3 border-b border-[var(--color-border)] opacity-60"
+                    className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6 py-3 border-b border-[var(--gnr-border)] opacity-60"
                   >
-                    <span className="font-[family-name:var(--font-display)] text-xs uppercase tracking-wider text-[var(--color-muted)] min-w-[180px]">
+                    <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-wider text-[var(--gnr-muted)] min-w-[180px]">
                       {formatDate(show.event_date)}
                     </span>
-                    <span className="text-[var(--color-text)]">{show.venue_name ?? 'Venue TBA'}</span>
+                    <span className="text-[var(--gnr-text)]">{show.venue_name ?? 'Venue TBA'}</span>
                   </li>
                 ))}
               </ul>

@@ -41,51 +41,51 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 bg-[var(--color-bg)]"
+      <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 bg-[var(--gnr-bg)]"
         style={{ background: 'radial-gradient(ellipse at 50% 60%, #1f1a12 0%, #0f0e0d 70%)' }}
       >
         <div className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 2px,#fff 2px,#fff 3px)', backgroundSize: '100% 4px' }}
         />
-        <p className="font-[family-name:var(--font-display)] text-xs uppercase tracking-[0.35em] text-[var(--color-brand)] mb-6">
+        <p className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-[0.35em] text-[var(--gnr-brand)] mb-6">
           Central Illinois
         </p>
-        <h1 className="text-6xl sm:text-7xl md:text-8xl font-[family-name:var(--font-display)] font-bold uppercase tracking-tight text-white mb-4">
+        <h1 className="text-6xl sm:text-7xl md:text-8xl font-[family-name:var(--gnr-font-display)] font-bold uppercase tracking-tight text-white mb-4">
           {siteConfig.hero.headline}
         </h1>
-        <p className="font-[family-name:var(--font-display)] text-base sm:text-lg uppercase tracking-widest text-[var(--color-muted)] mb-10">
+        <p className="font-[family-name:var(--gnr-font-display)] text-base sm:text-lg uppercase tracking-widest text-[var(--gnr-muted)] mb-10">
           {siteConfig.hero.tagline}
         </p>
         <Link
           href={siteConfig.hero.ctaHref}
-          className="inline-block font-[family-name:var(--font-display)] uppercase tracking-widest text-sm px-8 py-3 bg-[var(--color-brand)] text-[var(--color-bg)] font-bold hover:bg-[var(--color-brand-dark)] transition-colors"
+          className="inline-block font-[family-name:var(--gnr-font-display)] uppercase tracking-widest text-sm px-8 py-3 bg-[var(--gnr-brand)] text-[var(--gnr-bg)] font-bold hover:bg-[var(--gnr-brand-dark)] transition-colors"
         >
           {siteConfig.hero.ctaLabel}
         </Link>
       </section>
 
       {/* Bio teaser */}
-      <section className="border-t border-[var(--color-border)] py-20 px-6">
+      <section className="border-t border-[var(--gnr-border)] py-20 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-xl sm:text-2xl text-[var(--color-text)] mb-8 leading-relaxed">
+          <p className="text-xl sm:text-2xl text-[var(--gnr-text)] mb-8 leading-relaxed">
             {siteConfig.bio.short}
           </p>
           <div className="flex flex-wrap justify-center gap-3 mb-6">
             {siteConfig.bio.genreTags.map((tag) => (
               <span
                 key={tag}
-                className="font-[family-name:var(--font-display)] text-xs uppercase tracking-widest px-3 py-1 border border-[var(--color-brand)] text-[var(--color-brand)]"
+                className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest px-3 py-1 border border-[var(--gnr-brand)] text-[var(--gnr-brand)]"
               >
                 {tag}
               </span>
             ))}
           </div>
-          <p className="text-sm text-[var(--color-muted)] uppercase tracking-widest font-[family-name:var(--font-display)] mb-8">
+          <p className="text-sm text-[var(--gnr-muted)] uppercase tracking-widest font-[family-name:var(--gnr-font-display)] mb-8">
             {siteConfig.location.city}, {siteConfig.location.state}
           </p>
           <Link
             href="/about"
-            className="inline-block font-[family-name:var(--font-display)] uppercase tracking-widest text-sm px-6 py-2 border border-[var(--color-border)] text-[var(--color-text)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand)] transition-colors"
+            className="inline-block font-[family-name:var(--gnr-font-display)] uppercase tracking-widest text-sm px-6 py-2 border border-[var(--gnr-border)] text-[var(--gnr-text)] hover:border-[var(--gnr-brand)] hover:text-[var(--gnr-brand)] transition-colors"
           >
             Learn More
           </Link>
@@ -93,26 +93,26 @@ export default async function HomePage() {
       </section>
 
       {/* Upcoming shows preview */}
-      <section className="border-t border-[var(--color-border)] py-20 px-6 bg-[var(--color-surface)]">
+      <section className="border-t border-[var(--gnr-border)] py-20 px-6 bg-[var(--gnr-surface)]">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl sm:text-4xl text-center mb-12">Upcoming Shows</h2>
           {upcomingShows.length === 0 ? (
-            <p className="text-center text-[var(--color-muted)]">No upcoming shows at this time. Check back soon!</p>
+            <p className="text-center text-[var(--gnr-muted)]">No upcoming shows at this time. Check back soon!</p>
           ) : (
             <ul className="space-y-4 mb-10">
               {upcomingShows.map((show) => (
                 <li
                   key={show.id}
-                  className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 border-l-2 border-[var(--color-brand)] pl-5 py-3 bg-[var(--color-surface-2)]"
+                  className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 border-l-2 border-[var(--gnr-brand)] pl-5 py-3 bg-[var(--gnr-surface-2)]"
                 >
-                  <span className="font-[family-name:var(--font-display)] text-sm uppercase tracking-wider text-[var(--color-brand)] min-w-[180px]">
+                  <span className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-wider text-[var(--gnr-brand)] min-w-[180px]">
                     {formatDate(show.event_date)}
                   </span>
-                  <span className="font-[family-name:var(--font-body)] text-[var(--color-text)]">
+                  <span className="font-[family-name:var(--gnr-font-body)] text-[var(--gnr-text)]">
                     {show.venue_name ?? 'TBA'}
                   </span>
                   {show.event_time && (
-                    <span className="text-sm text-[var(--color-muted)] sm:ml-auto">
+                    <span className="text-sm text-[var(--gnr-muted)] sm:ml-auto">
                       {formatTime(show.event_time)}
                     </span>
                   )}
@@ -123,7 +123,7 @@ export default async function HomePage() {
           <div className="text-center">
             <Link
               href="/shows"
-              className="inline-block font-[family-name:var(--font-display)] uppercase tracking-widest text-sm px-8 py-3 bg-[var(--color-brand)] text-[var(--color-bg)] font-bold hover:bg-[var(--color-brand-dark)] transition-colors"
+              className="inline-block font-[family-name:var(--gnr-font-display)] uppercase tracking-widest text-sm px-8 py-3 bg-[var(--gnr-brand)] text-[var(--gnr-bg)] font-bold hover:bg-[var(--gnr-brand-dark)] transition-colors"
             >
               See All Shows
             </Link>
