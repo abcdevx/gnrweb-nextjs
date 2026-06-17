@@ -7,4 +7,3 @@ deployment:
     - chmod 755 $DEPLOYPATH/.next $DEPLOYPATH/.next/server $DEPLOYPATH/.next/server/chunks $DEPLOYPATH/.next/server/chunks/ssr $DEPLOYPATH/.next/server/app $DEPLOYPATH/.next/static $DEPLOYPATH/.next/static/chunks
     - export HOME=/home/goodsmux
     - cd $DEPLOYPATH && /home/goodsmux/nodevenv/staging.goodnrowdy.com/20/bin/npm install --omit=dev
-    - cd $DEPLOYPATH && /home/goodsmux/nodevenv/staging.goodnrowdy.com/20/bin/npm run build
