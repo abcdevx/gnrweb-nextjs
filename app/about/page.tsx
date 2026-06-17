@@ -3,6 +3,8 @@ import { getMembers } from '@/lib/soundcheck'
 import type { Metadata } from 'next'
 import type { BandMember } from '@/types'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: `About | ${siteConfig.bandName}`,
   description: `Learn more about ${siteConfig.bandName}.`,

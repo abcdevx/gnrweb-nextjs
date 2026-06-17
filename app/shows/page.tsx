@@ -3,6 +3,8 @@ import { getShows } from '@/lib/soundcheck'
 import type { Metadata } from 'next'
 import type { Show } from '@/types'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: `Shows | ${siteConfig.bandName}`,
   description: `Upcoming and past shows for ${siteConfig.bandName}.`,

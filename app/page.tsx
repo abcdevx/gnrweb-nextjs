@@ -3,6 +3,8 @@ import { siteConfig } from '@/config/site'
 import { getShows } from '@/lib/soundcheck'
 import type { Show } from '@/types'
 
+export const dynamic = 'force-dynamic'
+
 function formatDate(dateStr: string | null): string {
   if (!dateStr) return 'TBD'
   return new Date(dateStr + 'T00:00:00').toLocaleDateString('en-US', {
