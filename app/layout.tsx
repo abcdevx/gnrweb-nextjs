@@ -15,9 +15,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="flex flex-col min-h-screen">
         <SiteNav />
-        <main>{children}</main>
+        <main className="flex-1">{children}</main>
+        <footer className="border-t border-[var(--color-border)] py-8 text-center text-sm text-[var(--color-muted)]">
+          <p>© {new Date().getFullYear()} Good n&apos; Rowdy. All rights reserved.</p>
+        </footer>
       </body>
     </html>
   )

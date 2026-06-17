@@ -50,47 +50,72 @@ export default async function ShowsPage() {
 
   return (
     <>
-      <section>
-        <h1>Shows</h1>
+      {/* Page header */}
+      <div className="border-b border-[var(--color-border)] py-16 px-6 text-center bg-[var(--color-surface)]">
+        <h1 className="text-5xl sm:text-6xl">Shows</h1>
+      </div>
 
-        {error && <p>{error}</p>}
+      <section className="py-16 px-6">
+        <div className="max-w-3xl mx-auto">
 
-        <div>
-          <h2>Upcoming</h2>
-          {upcoming.length === 0 ? (
-            <p>No upcoming shows scheduled. Check back soon!</p>
-          ) : (
-            <ul>
-              {upcoming.map((show) => (
-                <li key={show.id}>
-                  <p>{formatDate(show.event_date)}</p>
-                  {show.event_time && (
-                    <p>
-                      {formatTime(show.event_time)}
-                      {show.event_end_time && ` – ${formatTime(show.event_end_time)}`}
-                    </p>
-                  )}
-                  <p>{show.venue_name ?? 'Venue TBA'}</p>
-                  {show.notes && <p>{show.notes}</p>}
-                </li>
-              ))}
-            </ul>
+          {error && (
+            <p className="text-center text-[var(--color-muted)] mb-8">{error}</p>
           )}
-        </div>
 
-        {past.length > 0 && (
-          <div>
-            <h2>Past Shows</h2>
-            <ul>
-              {past.map((show) => (
-                <li key={show.id}>
-                  <p>{formatDate(show.event_date)}</p>
-                  <p>{show.venue_name ?? 'Venue TBA'}</p>
-                </li>
-              ))}
-            </ul>
+          {/* Upcoming */}
+          <div className="mb-16">
+            <h2 className="text-2xl mb-8 pb-3 border-b border-[var(--color-border)]">Upcoming</h2>
+            {upcoming.length === 0 ? (
+              <p className="text-[var(--color-muted)]">No upcoming shows scheduled. Check back soon!</p>
+            ) : (
+              <ul className="space-y-4">
+                {upcoming.map((show) => (
+                  <li
+                    key={show.id}
+                    className="border-l-2 border-[var(--color-brand)] pl-5 py-4 bg-[var(--color-surface)] flex flex-col gap-1"
+                  >
+                    <span className="font-[family-name:var(--font-display)] text-sm uppercase tracking-wider text-[var(--color-brand)]">
+                      {formatDate(show.event_date)}
+                    </span>
+                    <span className="font-[family-name:var(--font-body)] text-lg text-[var(--color-text)] font-semibold">
+                      {show.venue_name ?? 'Venue TBA'}
+                    </span>
+                    {show.event_time && (
+                      <span className="text-sm text-[var(--color-muted)]">
+                        {formatTime(show.event_time)}
+                        {show.event_end_time && ` – ${formatTime(show.event_end_time)}`}
+                      </span>
+                    )}
+                    {show.notes && (
+                      <span className="text-sm text-[var(--color-muted)] italic">{show.notes}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-        )}
+
+          {/* Past Shows */}
+          {past.length > 0 && (
+            <div>
+              <h2 className="text-2xl mb-8 pb-3 border-b border-[var(--color-border)]">Past Shows</h2>
+              <ul className="space-y-2">
+                {past.map((show) => (
+                  <li
+                    key={show.id}
+                    className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6 py-3 border-b border-[var(--color-border)] opacity-60"
+                  >
+                    <span className="font-[family-name:var(--font-display)] text-xs uppercase tracking-wider text-[var(--color-muted)] min-w-[180px]">
+                      {formatDate(show.event_date)}
+                    </span>
+                    <span className="text-[var(--color-text)]">{show.venue_name ?? 'Venue TBA'}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+        </div>
       </section>
     </>
   )
