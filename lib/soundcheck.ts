@@ -26,13 +26,25 @@ function isConfigured(): boolean {
 }
 
 export async function getShows(): Promise<Show[]> {
-  if (!isConfigured()) return []
-  const res = await fetch(`${BASE_URL}/api/public/shows`, {
+  console.log('[soundcheck] BASE_URL:', BASE_URL, 'API_KEY set:', Boolean(API_KEY))
+  if (!isConfigured()) {
+    console.log('[soundcheck] Not configured, returning empty shows')
+    return []
+  }
+  const url = `${BASE_URL}/api/public/shows`
+  console.log('[soundcheck] Fetching shows from:', url)
+  const res = await fetch(url, {
     headers: getHeaders(),
-    next: { revalidate: 300 },
+    cache: 'no-store',
   })
-  if (!res.ok) throw new Error(`Failed to fetch shows: ${res.status}`)
+  console.log('[soundcheck] Shows response status:', res.status)
+  if (!res.ok) {
+    const text = await res.text()
+    console.log('[soundcheck] Shows error body:', text)
+    throw new Error(`Failed to fetch shows: ${res.status}`)
+  }
   const data = await res.json() as { shows: Show[] }
+  console.log('[soundcheck] Shows count:', data.shows?.length)
   return data.shows ?? []
 }
 
