@@ -45,7 +45,7 @@ export default function SiteNav() {
         {/* Spacer to balance hamburger */}
         <div className="w-10" />
         <Link href="/" onClick={() => setOpen(false)} className="absolute left-1/2 -translate-x-1/2">
-          <Image src="/logo.png" alt={siteConfig.bandName} width={200} height={200} className="w-[64px] h-[64px] object-contain" priority />
+          <Image src="/logo.png" alt={siteConfig.bandName} width={200} height={200} className="w-[80px] h-[80px] object-contain" priority />
         </Link>
         <button
           onClick={() => setOpen(!open)}

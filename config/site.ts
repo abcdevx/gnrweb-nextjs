@@ -49,9 +49,10 @@ export const siteConfig = {
   ],
 
   notableShows: [
-    { venue: 'Levee Park Amphitheatre', location: 'East Peoria, IL', date: 'Nov 2025', note: 'First band to perform at the new amphitheatre — East Peoria Veterans Day Parade' },
-    { venue: 'Crusens', location: 'Peoria, IL', date: 'Early 2026', note: 'Debut performance at one of Central Illinois\'s premier live music venues' },
-    { venue: 'East Peoria Veterans Day Parade', location: 'East Peoria, IL', date: 'Nov 2025', note: 'Live performance as part of the annual Veterans Day celebration' },
+    { venue: 'Levee Park Amphitheatre', location: 'East Peoria, IL', date: 'Nov 8, 2025', note: '' },
+    { venue: 'Cadillac Jacks', location: 'Bloomington, IL', date: 'Feb 27, 2026', note: '' },
+    { venue: 'Crusens', location: 'Peoria, IL', date: 'Mar 6, 2026', note: '' },
+    { venue: "Oz's Bar & Grill", location: 'Creve Coeur, IL', date: 'May 22, 2026', note: '' },
   ],
 
   supporters: [
