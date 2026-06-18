@@ -32,7 +32,7 @@ Copy-Item -Force "package.json" "deploy/package.json"
 Copy-Item -Force "next.config.ts" "deploy/next.config.ts"
 Copy-Item -Force "tsconfig.json" "deploy/tsconfig.json"
 Copy-Item -Force "postcss.config.mjs" "deploy/postcss.config.mjs"
-Copy-Item -Force ".env.local.example" "deploy/.env.local.example"
+
 Copy-Item -Force "start.js" "deploy/start.js"
 
 # node_modules is intentionally excluded — CloudLinux creates it via npm install in venv
