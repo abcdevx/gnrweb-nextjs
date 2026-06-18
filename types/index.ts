@@ -6,6 +6,7 @@ export type Show = {
   event_end_time: string | null
   status: 'confirmed' | 'completed'
   notes: string | null
+  location: string | null
 }
 
 export type BandMember = {

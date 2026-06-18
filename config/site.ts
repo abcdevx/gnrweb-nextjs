@@ -50,6 +50,14 @@ export const siteConfig = {
     youtube: '',
   },
 
+  members: [
+    { id: 'jon',     name: 'Jon Schmidgall',  nickname: 'Jonny Smoke', roles: ['Electric Guitar', 'Vocals'], founding: true,  photo: '/photos/Jon.jpeg',     bio: '', photoPosition: 'top',    photoScale: 1 },
+    { id: 'alex',    name: 'Alex Clark',       nickname: 'Clark',       roles: ['Acoustic Guitar', 'Keys', 'Vocals'], founding: true,  photo: '/photos/Alex.jpeg',    bio: '', photoPosition: 'center 15%', photoScale: 1 },
+    { id: 'chance',  name: 'Chance Whisenand', nickname: 'Whiz',        roles: ['Drums', 'Vocals'], founding: true,  photo: '/photos/Whiz.jpeg',    bio: '', photoPosition: 'center', photoScale: 1 },
+    { id: 'kaiden',  name: 'Kaiden Leezer',    nickname: null,          roles: ['Electric Guitar', 'Vocals'], founding: false, photo: '/photos/Kaiden.jpeg',  bio: '', photoPosition: 'center', photoScale: 1 },
+    { id: 'savannah',name: 'Savannah Grachek', nickname: null,          roles: ['Bass Guitar', 'Vocals'], founding: false, photo: '/photos/Savannah.jpg', bio: '', photoPosition: 'center', photoScale: 1 },
+  ],
+
   photos: [
     '/photos/3415733108702525639.JPG',
     '/photos/647108143_122178389168835118_8580017257700400124_n.jpg',

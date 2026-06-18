@@ -39,7 +39,13 @@ async function getUpcomingShows(): Promise<Show[]> {
 }
 
 export default async function HomePage() {
-  const upcomingShows = await getUpcomingShows()
+  const upcomingShows = process.env.NODE_ENV === 'development'
+    ? [
+        { id: 'mock-1', event_date: '2025-08-02', venue_name: 'The Rusty Spur Saloon', event_time: '20:00:00', event_end_time: null, status: 'confirmed' as const, notes: null, location: 'Peoria, IL' },
+        { id: 'mock-2', event_date: '2025-08-09', venue_name: 'Nickel Plate Bar & Grill', event_time: '21:00:00', event_end_time: null, status: 'confirmed' as const, notes: null, location: 'Hanna City, IL' },
+        { id: 'mock-3', event_date: '2025-08-16', venue_name: 'Yates City Harvest Home Festival', event_time: '18:00:00', event_end_time: null, status: 'confirmed' as const, notes: null, location: 'Yates City, IL' },
+      ]
+    : await getUpcomingShows()
 
   return (
     <>
@@ -103,19 +109,33 @@ export default async function HomePage() {
                 {upcomingShows.map((show) => (
                   <li
                     key={show.id}
-                    className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 border-l-2 border-[var(--gnr-brand)] pl-5 py-3 bg-[var(--gnr-surface-2)]"
+                    className="relative px-6 py-5 rounded-sm"
+                    style={{
+                      background: 'rgba(255,255,255,0.03)',
+                      border: '1px solid rgba(var(--gnr-brand-rgb, 212,175,55), 0.35)',
+                      boxShadow: '0 0 18px rgba(212,175,55,0.08), inset 0 0 30px rgba(212,175,55,0.03)',
+                    }}
                   >
-                    <span className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-wider text-[var(--gnr-brand)] min-w-[180px]">
-                      {formatDate(show.event_date)}
-                    </span>
-                    <span className="font-[family-name:var(--gnr-font-body)] text-[var(--gnr-text)]">
-                      {show.venue_name ?? 'TBA'}
-                    </span>
-                    {show.event_time && (
-                      <span className="text-sm text-[var(--gnr-muted)] sm:ml-auto">
-                        {formatTime(show.event_time)}
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6">
+                      <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-brand)]">
+                        {formatDate(show.event_date)}
                       </span>
-                    )}
+                      {show.event_time && (
+                        <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)] sm:ml-auto">
+                          {formatTime(show.event_time)}
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-2 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                      <p className="font-[family-name:var(--gnr-font-display)] text-xl sm:text-2xl uppercase tracking-wide text-[var(--gnr-text)]">
+                        {show.venue_name ?? 'TBA'}
+                      </p>
+                      {show.location && (
+                        <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">
+                          {show.location}
+                        </span>
+                      )}
+                    </div>
                   </li>
                 ))}
               </ul>

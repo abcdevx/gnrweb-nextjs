@@ -51,8 +51,8 @@ export default async function ShowsPage() {
   return (
     <>
       {/* Page header */}
-      <div className="border-b border-[var(--gnr-border)] py-16 px-6 text-center bg-[var(--gnr-surface)]">
-        <h1 className="text-5xl sm:text-6xl">Shows</h1>
+      <div className="relative border-b border-[var(--gnr-border)] h-40 sm:h-52 flex items-end justify-center overflow-hidden bg-[var(--gnr-surface)]">
+        <h1 className="relative text-5xl sm:text-6xl pb-4 z-10">Shows</h1>
       </div>
 
       <section className="py-16 px-6">
