@@ -10,10 +10,10 @@
 export const siteConfig = {
   bandName: 'Good n\' Rowdy',
   tagline: 'Your favorite cover band',
-  description: 'Good n\' Rowdy is a high-energy cover band based out of [City, State].',
+  description: 'Good N\' Rowdy is a country and southern rock band out of Central Illinois.',
   location: {
-    city: 'Nashville',
-    state: 'TN',
+    city: 'Farmington',
+    state: 'IL',
   },
 
   nav: {
@@ -35,11 +35,28 @@ export const siteConfig = {
   },
 
   bio: {
-    short: 'We play the songs you love — louder than you remember.',
-    full: `Good n' Rowdy is a high-energy cover band bringing the best of country, rock, and everything in between to stages across the region. Known for their tight setlists and infectious energy, they keep the dance floor full all night long.`,
-    formedYear: 2018,
-    genreTags: ['Country', 'Rock', 'Country Rock', 'Cover Band'],
+    short: 'Country, southern rock, and outlaw grit — built for the stage.',
+    full: `The Good N' Rowdy Band is an up-and-coming five-piece country rock group from Central Illinois. We play country, southern rock, barroom favorites, and original music at bars, festivals, parties, and events across the region and beyond.\n\nBig stage or small corner, we bring the same energy, preparation, and focus on the crowd in front of us.`,
+    formedYear: 2025,
+    genreTags: ['Country', 'Southern Rock', 'Outlaw Country', 'Live Band'],
+    inspirations: ['Zach Top', 'David Allan Coe', 'Waylon Jennings', 'Chris LeDoux', 'Jake Worthington', 'Uncle Kracker', 'George Strait', 'Turnpike Troubadours', 'Eagles', 'Luke Bryan', 'Toby Keith', 'Steve Earle', 'Don Williams', 'Gavin Adcock', '49 Winchester', 'Luke Combs', 'Lynyrd Skynyrd', 'Brooks & Dunn', 'Zach Bryan', 'The Marshall Tucker Band', 'Chris Stapleton', 'The Allman Brothers Band', 'Darius Rucker', 'Hank Williams Jr.', 'Kid Rock', 'Nickelback', 'Ronnie Milsap'],
   },
+
+  testimonials: [
+    { quote: 'Hometown Country Rock Built For Any Stage', author: '' },
+    { quote: 'Add your Facebook quote here', author: 'Fan Name' },
+    { quote: 'Add another Facebook quote here', author: 'Fan Name' },
+  ],
+
+  notableShows: [
+    { venue: 'Levee Park Amphitheatre', location: 'East Peoria, IL', date: 'Nov 2025', note: 'First band to perform at the new amphitheatre — East Peoria Veterans Day Parade' },
+    { venue: 'Crusens', location: 'Peoria, IL', date: 'Early 2026', note: 'Debut performance at one of Central Illinois\'s premier live music venues' },
+    { venue: 'East Peoria Veterans Day Parade', location: 'East Peoria, IL', date: 'Nov 2025', note: 'Live performance as part of the annual Veterans Day celebration' },
+  ],
+
+  supporters: [
+    { id: 'rad-audio', name: 'Steven Rada', role: 'Sound Support · RAD Audio', photo: '/photos/RAD AUDIO.jpg', url: '' },
+  ],
 
   social: {
     facebook: 'https://www.facebook.com/profile.php?id=61575053549063',
@@ -51,11 +68,11 @@ export const siteConfig = {
   },
 
   members: [
-    { id: 'jon',     name: 'Jon Schmidgall',  nickname: 'Jonny Smoke', roles: ['Electric Guitar', 'Vocals'], founding: true,  photo: '/photos/Jon.jpeg',     bio: '', photoPosition: 'top',    photoScale: 1 },
-    { id: 'alex',    name: 'Alex Clark',       nickname: 'Clark',       roles: ['Acoustic Guitar', 'Keys', 'Vocals'], founding: true,  photo: '/photos/Alex.jpeg',    bio: '', photoPosition: 'center 15%', photoScale: 1 },
-    { id: 'chance',  name: 'Chance Whisenand', nickname: 'Whiz',        roles: ['Drums', 'Vocals'], founding: true,  photo: '/photos/Whiz.jpeg',    bio: '', photoPosition: 'center', photoScale: 1 },
-    { id: 'kaiden',  name: 'Kaiden Leezer',    nickname: null,          roles: ['Electric Guitar', 'Vocals'], founding: false, photo: '/photos/Kaiden.jpeg',  bio: '', photoPosition: 'center', photoScale: 1 },
-    { id: 'savannah',name: 'Savannah Grachek', nickname: null,          roles: ['Bass Guitar', 'Vocals'], founding: false, photo: '/photos/Savannah.jpg', bio: '', photoPosition: 'center', photoScale: 1 },
+    { id: 'jon',     name: 'Jon Schmidgall',  nickname: 'Jonny Smoke', roles: ['Electric Guitar', 'Vocals'], founding: true,  joined: 'Early 2025', photo: '/photos/Jon.jpeg',     bio: '', photoPosition: 'top',       photoScale: 1 },
+    { id: 'alex',    name: 'Alex Clark',       nickname: 'Clark',       roles: ['Acoustic Guitar', 'Keys', 'Vocals'], founding: true,  joined: 'Early 2025', photo: '/photos/Alex.jpeg',    bio: '', photoPosition: 'center 15%', photoScale: 1 },
+    { id: 'chance',  name: 'Chance Whisenand', nickname: 'Whiz',        roles: ['Drums', 'Vocals'], founding: true,  joined: 'Early 2025', photo: '/photos/Whiz.jpeg',    bio: '', photoPosition: 'center',    photoScale: 1 },
+    { id: 'kaiden',  name: 'Kaiden Leezer',    nickname: null,          roles: ['Electric Guitar', 'Vocals'], founding: false, joined: 'Feb 2026',   photo: '/photos/Kaiden.jpeg',  bio: '', photoPosition: 'center',    photoScale: 1 },
+    { id: 'savannah',name: 'Savannah Grachek', nickname: null,          roles: ['Bass Guitar', 'Vocals'], founding: false, joined: 'June 2026',  photo: '/photos/Savannah.jpg', bio: '', photoPosition: 'center',    photoScale: 1 },
   ],
 
   photos: [

@@ -1,6 +1,8 @@
 import { siteConfig } from '@/config/site'
 import Image from 'next/image'
 import type { Metadata } from 'next'
+import DriftingPills from '@/components/DriftingPills'
+
 
 export const metadata: Metadata = {
   title: `About | ${siteConfig.bandName}`,
@@ -20,27 +22,62 @@ export default function AboutPage() {
       </div>
 
       {/* Bio */}
-      <section className="py-16 px-6 border-b border-[var(--gnr-border)]">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-lg text-[var(--gnr-text)] leading-relaxed mb-8">
-            {siteConfig.bio.full}
-          </p>
-          <div className="flex flex-wrap gap-3 mb-6">
-            {siteConfig.bio.genreTags.map((tag) => (
-              <span
-                key={tag}
-                className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest px-3 py-1 border border-[var(--gnr-brand)] text-[var(--gnr-brand)]"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-          <p className="text-sm text-[var(--gnr-muted)] uppercase tracking-widest font-[family-name:var(--gnr-font-display)]">
-            Based in {siteConfig.location.city}, {siteConfig.location.state}
-            {siteConfig.bio.formedYear ? ` · Est. ${siteConfig.bio.formedYear}` : ''}
+      <section className="border-b border-[var(--gnr-border)]">
+        {/* Pull quote */}
+        <div className="py-6 px-6 border-b border-[var(--gnr-border)] bg-[var(--gnr-surface)] text-center">
+          <p className="max-w-3xl mx-auto text-xl sm:text-2xl font-[family-name:var(--gnr-font-display)] text-[var(--gnr-brand)] leading-snug">
+            {siteConfig.hero.tagline}
           </p>
         </div>
+
+        {/* Stats row */}
+        <div className="grid grid-cols-3 border-b border-[var(--gnr-border)]">
+          {[
+            { value: siteConfig.bio.formedYear?.toString() ?? '', label: 'Est.' },
+            { value: '40+', label: 'Live Shows' },
+            { value: '15+', label: 'Cities' },
+          ].map((stat) => (
+            <div key={stat.label} className="flex flex-col items-center justify-center py-8 px-4 border-r border-[var(--gnr-border)] last:border-r-0">
+              <span className="font-[family-name:var(--gnr-font-display)] text-3xl sm:text-4xl text-[var(--gnr-brand)]">{stat.value}</span>
+              <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)] mt-1">{stat.label}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Body copy + drifting pills */}
+        <DriftingPills artists={siteConfig.bio.inspirations ?? []}>
+          <div className="max-w-xl w-full bg-[var(--gnr-bg)] border border-[var(--gnr-border)] px-8 py-8" style={{ boxShadow: '0 0 60px 20px var(--gnr-bg)' }}>
+            <p className="text-xl sm:text-2xl font-[family-name:var(--gnr-font-display)] text-[var(--gnr-text)] leading-relaxed border-l-4 border-[var(--gnr-brand)] pl-5">
+              {siteConfig.bio.full.split('\n\n')[0]}
+            </p>
+          </div>
+        </DriftingPills>
       </section>
+
+      {/* Notable shows */}
+      {siteConfig.notableShows.length > 0 && (
+        <section className="py-10 px-6 border-b border-[var(--gnr-border)]">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-xl sm:text-2xl mb-6">Notable Shows</h2>
+            <ul className="space-y-2">
+              {siteConfig.notableShows.map((show, i) => (
+                <li
+                  key={i}
+                  className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6 px-4 py-3 rounded-sm"
+                  style={{
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(212,175,55,0.2)',
+                  }}
+                >
+                  <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-brand)] shrink-0">{show.date}</span>
+                  <span className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-wide text-[var(--gnr-text)]">{show.venue}</span>
+                  <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)] sm:ml-auto">{show.location}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       {/* Band members */}
       <section className="py-16 px-6 border-b border-[var(--gnr-border)] bg-[var(--gnr-surface)]">
@@ -69,9 +106,10 @@ export default function AboutPage() {
                       <p className="font-[family-name:var(--gnr-font-display)] text-lg uppercase tracking-wide text-[var(--gnr-text)]">
                         {member.name}
                       </p>
-                      {member.founding && (
-                        <span className="font-[family-name:var(--gnr-font-display)] text-[10px] uppercase tracking-widest px-2 py-0.5 border border-[var(--gnr-brand)] text-[var(--gnr-brand)]">Founder</span>
-                      )}
+                      {member.founding
+                      ? <span className="font-[family-name:var(--gnr-font-display)] text-[10px] uppercase tracking-widest px-2 py-0.5 border border-[var(--gnr-brand)] text-[var(--gnr-brand)]">Founder</span>
+                      : member.joined && <span className="font-[family-name:var(--gnr-font-display)] text-[10px] uppercase tracking-widest px-2 py-0.5 border border-[var(--gnr-muted)] text-[var(--gnr-muted)]">Joined {member.joined}</span>
+                    }
                     </div>
                     {member.nickname && (
                       <p className="font-[family-name:var(--gnr-font-display)] text-sm text-[var(--gnr-brand)] tracking-wide">&ldquo;{member.nickname}&rdquo;</p>
@@ -87,93 +125,42 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Social links */}
-      {(siteConfig.social.instagram ||
-        siteConfig.social.facebook ||
-        siteConfig.social.tiktok ||
-        siteConfig.social.spotify ||
-        siteConfig.social.appleMusic ||
-        siteConfig.social.youtube) && (
-        <section className="py-16 px-6">
+      {/* Supported by */}
+      {siteConfig.supporters.length > 0 && (
+        <section className="py-16 px-6 border-b border-[var(--gnr-border)]">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl mb-10">Follow Us</h2>
-            <ul className="flex flex-wrap gap-4">
-              {siteConfig.social.instagram && (
-                <li>
-                  <a
-                    href={siteConfig.social.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-widest px-5 py-2 border border-[var(--gnr-border)] text-[var(--gnr-text)] hover:border-[var(--gnr-brand)] hover:text-[var(--gnr-brand)] transition-colors"
-                  >
-                    Instagram
-                  </a>
+            <h2 className="text-3xl sm:text-4xl mb-10">Supported By</h2>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {siteConfig.supporters.map((s) => (
+                <li key={s.id} className="flex flex-col border border-[var(--gnr-border)] bg-[var(--gnr-surface-2)] overflow-hidden">
+                  {/* Photo / logo placeholder */}
+                  <div className="relative w-full h-40 bg-black flex items-center justify-center">
+                    {s.photo ? (
+                      <Image src={s.photo} alt={s.name} fill className="object-contain" sizes="(max-width:640px) 100vw, 50vw" />
+                    ) : (
+                      <span className="font-[family-name:var(--gnr-font-display)] text-4xl text-[var(--gnr-brand)]">
+                        {s.name.split(' ').map((w: string) => w[0]).join('')}
+                      </span>
+                    )}
+                  </div>
+                  {/* Info */}
+                  <div className="flex flex-col gap-1 p-5 border-t border-[var(--gnr-border)]">
+                    {s.url ? (
+                      <a href={s.url} target="_blank" rel="noopener noreferrer" className="font-[family-name:var(--gnr-font-display)] text-lg uppercase tracking-wide text-[var(--gnr-text)] hover:text-[var(--gnr-brand)] transition-colors">
+                        {s.name}
+                      </a>
+                    ) : (
+                      <p className="font-[family-name:var(--gnr-font-display)] text-lg uppercase tracking-wide text-[var(--gnr-text)]">{s.name}</p>
+                    )}
+                    <p className="text-xs text-[var(--gnr-muted)] uppercase tracking-widest font-[family-name:var(--gnr-font-display)]">{s.role}</p>
+                  </div>
                 </li>
-              )}
-              {siteConfig.social.facebook && (
-                <li>
-                  <a
-                    href={siteConfig.social.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-widest px-5 py-2 border border-[var(--gnr-border)] text-[var(--gnr-text)] hover:border-[var(--gnr-brand)] hover:text-[var(--gnr-brand)] transition-colors"
-                  >
-                    Facebook
-                  </a>
-                </li>
-              )}
-              {siteConfig.social.tiktok && (
-                <li>
-                  <a
-                    href={siteConfig.social.tiktok}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-widest px-5 py-2 border border-[var(--gnr-border)] text-[var(--gnr-text)] hover:border-[var(--gnr-brand)] hover:text-[var(--gnr-brand)] transition-colors"
-                  >
-                    TikTok
-                  </a>
-                </li>
-              )}
-              {siteConfig.social.spotify && (
-                <li>
-                  <a
-                    href={siteConfig.social.spotify}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-widest px-5 py-2 border border-[var(--gnr-border)] text-[var(--gnr-text)] hover:border-[var(--gnr-brand)] hover:text-[var(--gnr-brand)] transition-colors"
-                  >
-                    Spotify
-                  </a>
-                </li>
-              )}
-              {siteConfig.social.appleMusic && (
-                <li>
-                  <a
-                    href={siteConfig.social.appleMusic}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-widest px-5 py-2 border border-[var(--gnr-border)] text-[var(--gnr-text)] hover:border-[var(--gnr-brand)] hover:text-[var(--gnr-brand)] transition-colors"
-                  >
-                    Apple Music
-                  </a>
-                </li>
-              )}
-              {siteConfig.social.youtube && (
-                <li>
-                  <a
-                    href={siteConfig.social.youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-widest px-5 py-2 border border-[var(--gnr-border)] text-[var(--gnr-text)] hover:border-[var(--gnr-brand)] hover:text-[var(--gnr-brand)] transition-colors"
-                  >
-                    YouTube
-                  </a>
-                </li>
-              )}
+              ))}
             </ul>
           </div>
         </section>
       )}
+
     </>
   )
 }
