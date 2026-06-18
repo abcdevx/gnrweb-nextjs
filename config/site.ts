@@ -42,12 +42,44 @@ export const siteConfig = {
   },
 
   social: {
-    facebook: '',
-    instagram: '',
+    facebook: 'https://www.facebook.com/profile.php?id=61575053549063',
+    instagram: 'https://www.instagram.com/goodnrowdymusic?igsh=dTF4eWhreGVhZzJt&utm_source=qr',
     tiktok: '',
     spotify: '',
     appleMusic: '',
     youtube: '',
+  },
+
+  photos: [
+    '/photos/3415733108702525639.JPG',
+    '/photos/647108143_122178389168835118_8580017257700400124_n.jpg',
+    '/photos/657848696_122180868842835118_6128071817641088818_n.jpg',
+    '/photos/695710422_122187354008835118_9191531843432103827_n.jpg',
+    '/photos/706473927_122189066648835118_7835160945173983321_n.jpg',
+    '/photos/708155646_122189345756835118_662015639991728358_n.jpg',
+    '/photos/718336465_122190923252835118_2457406282593670564_n.jpg',
+    '/photos/719506572_122190923204835118_6353239768227055854_n.jpg',
+    '/photos/Cover.jpeg',
+    '/photos/IMG_8183.jpeg',
+    '/photos/IMG_8550.JPG',
+    '/photos/IMG_8622.JPG',
+  ],
+
+  latestRelease: {
+    title: '',
+    subtitle: '',
+    coverUrl: '',
+    links: {
+      spotify: '',
+      appleMusic: '',
+      youtube: '',
+    },
+  },
+
+  emailSignup: {
+    heading: 'Stay In The Loop',
+    subheading: 'Get notified about new shows, releases, and news.',
+    formUrl: '',
   },
 
   contact: {

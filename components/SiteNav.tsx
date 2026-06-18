@@ -14,7 +14,7 @@ export default function SiteNav() {
     <nav className="sticky top-0 z-50 bg-[var(--gnr-bg)] border-b border-[var(--gnr-border)]">
 
       {/* Desktop layout */}
-      <div className="hidden md:flex max-w-6xl mx-auto px-8 py-3 items-center justify-between">
+      <div className="hidden md:flex max-w-6xl mx-auto px-8 h-[150px] items-center justify-between">
         <ul className="flex items-start gap-10 flex-1 justify-end pr-10 pt-2">
           {siteConfig.nav.left.map((item) => (
             <li key={item.href}>
@@ -25,8 +25,8 @@ export default function SiteNav() {
           ))}
         </ul>
 
-        <Link href="/" className="flex-shrink-0 relative -mt-5 -mb-4">
-          <Image src="/logo.png" alt={siteConfig.bandName} width={380} height={380} className="w-[160px] h-[160px] object-contain" priority />
+        <Link href="/" className="flex-shrink-0">
+          <Image src="/logo.png" alt={siteConfig.bandName} width={380} height={380} className="w-[130px] h-[130px] object-contain" priority />
         </Link>
 
         <ul className="flex items-start gap-10 flex-1 justify-start pl-10 pt-2">
@@ -45,7 +45,7 @@ export default function SiteNav() {
         {/* Spacer to balance hamburger */}
         <div className="w-10" />
         <Link href="/" onClick={() => setOpen(false)} className="absolute left-1/2 -translate-x-1/2">
-          <Image src="/logo.png" alt={siteConfig.bandName} width={200} height={200} className="w-[80px] h-[80px] object-contain" priority />
+          <Image src="/logo.png" alt={siteConfig.bandName} width={200} height={200} className="w-[64px] h-[64px] object-contain" priority />
         </Link>
         <button
           onClick={() => setOpen(!open)}
@@ -60,7 +60,7 @@ export default function SiteNav() {
 
       {/* Mobile dropdown */}
       {open && (
-        <div className="md:hidden border-t border-[var(--gnr-border)] bg-[var(--gnr-bg)]">
+        <div className="md:hidden absolute top-full left-0 right-0 border-t border-[var(--gnr-border)] bg-[var(--gnr-bg)] z-50">
           <ul className="flex flex-col py-4">
             {allLinks.map((item) => (
               <li key={item.href}>
