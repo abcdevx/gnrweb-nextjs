@@ -53,11 +53,13 @@ export default function PastShows({ past }: { past: Show[] }) {
                       {formatDate(show.event_date)}
                     </span>
                     <span className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-wide text-[var(--gnr-text)]">
-                      {show.venue_name ?? 'Venue: TBD'}
+                      {show.location === 'Private Event' ? 'Private Event' : (show.venue_name ?? 'Venue: TBD')}
                     </span>
-                    <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)] sm:ml-auto shrink-0">
-                      {show.location ?? 'Location: TBD'}
-                    </span>
+                    {show.location !== 'Private Event' && (
+                      <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)] sm:ml-auto shrink-0">
+                        {show.location ?? 'Location: TBD'}
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>

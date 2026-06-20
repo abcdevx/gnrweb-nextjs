@@ -117,18 +117,22 @@ export default async function ShowsPage() {
                         {formatDate(show.event_date)}
                       </span>
 
-                      <span className={`font-[family-name:var(--gnr-font-display)] uppercase tracking-wide text-[var(--gnr-text)] ${isNext ? 'text-2xl sm:text-3xl' : 'text-lg'}`}>
-                        {show.venue_name ?? 'Venue: TBD'}
-                      </span>
+                      {show.location !== 'Private Event' && (
+                        <span className={`font-[family-name:var(--gnr-font-display)] uppercase tracking-wide text-[var(--gnr-text)] ${isNext ? 'text-2xl sm:text-3xl' : 'text-lg'}`}>
+                          {show.venue_name ?? 'Venue: TBD'}
+                        </span>
+                      )}
 
                       <div className="flex flex-wrap gap-x-6 gap-y-1">
                         <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">
                           <FaMapMarkerAlt className="inline mr-1.5" style={{ color: 'var(--gnr-brand)' }} />{show.location ?? 'Location: TBD'}
                         </span>
-                        <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">
-                          <FaClock className="inline mr-1.5" style={{ color: 'var(--gnr-brand)' }} />{show.event_time ? formatTime(show.event_time) : 'Time: TBD'}
-                          {show.event_time && show.event_end_time && ` – ${formatTime(show.event_end_time)}`}
-                        </span>
+                        {show.location !== 'Private Event' && (
+                          <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">
+                            <FaClock className="inline mr-1.5" style={{ color: 'var(--gnr-brand)' }} />{show.event_time ? formatTime(show.event_time) : 'Time: TBD'}
+                            {show.event_time && show.event_end_time && ` – ${formatTime(show.event_end_time)}`}
+                          </span>
+                        )}
                       </div>
                     </li>
                   )
