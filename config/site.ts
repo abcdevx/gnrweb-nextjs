@@ -56,7 +56,7 @@ export const siteConfig = {
   ],
 
   supporters: [
-    { id: 'rad-audio', name: 'Steven Rada', role: 'Sound Support · RAD Audio', photo: '/photos/RAD AUDIO.jpg', url: '' },
+    { id: 'rad-audio', name: 'Stephen Rada', role: 'Sound Support · RAD Audio', photo: '/photos/RAD AUDIO.jpg', url: '' },
   ],
 
   social: {
