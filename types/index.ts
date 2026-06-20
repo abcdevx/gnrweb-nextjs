@@ -7,6 +7,7 @@ export type Show = {
   status: 'confirmed' | 'completed'
   notes: string | null
   location: string | null
+  event_title: string | null
 }
 
 export type BandMember = {

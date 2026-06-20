@@ -96,6 +96,11 @@ export default function PastShows({ past }: { past: Show[] }) {
                     </span>
                     <span className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-wide text-[var(--gnr-text)]">
                       {show.location === 'Private Event' ? 'Private Event' : (show.venue_name ?? 'Venue: TBD')}
+                      {show.event_title && (
+                        <span className="font-[family-name:var(--gnr-font-display)] text-[var(--gnr-muted)] ml-2 normal-case tracking-normal" style={{ fontSize: '0.75em' }}>
+                          — {show.event_title}
+                        </span>
+                      )}
                     </span>
                     {show.location !== 'Private Event' && (
                       <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)] sm:ml-auto shrink-0">
