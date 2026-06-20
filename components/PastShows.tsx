@@ -94,14 +94,16 @@ export default function PastShows({ past }: { past: Show[] }) {
                     <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-wider text-[var(--gnr-muted)] shrink-0 min-w-[180px]">
                       {formatDate(show.event_date)}
                     </span>
-                    <span className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-wide text-[var(--gnr-text)]">
-                      {show.location === 'Private Event' ? 'Private Event' : (show.venue_name ?? 'Venue: TBD')}
-                      {show.event_title && (
-                        <span className="font-[family-name:var(--gnr-font-display)] text-[var(--gnr-muted)] ml-2 normal-case tracking-normal" style={{ fontSize: '0.75em' }}>
-                          — {show.event_title}
+                    <div className="flex flex-col gap-0.5">
+                      <span className="font-[family-name:var(--gnr-font-display)] text-sm uppercase tracking-wide text-[var(--gnr-text)]">
+                        {show.location === 'Private Event' ? 'Private Event' : (show.venue_name ?? 'Venue: TBD')}
+                      </span>
+                      {show.event_title && show.location !== 'Private Event' && (
+                        <span className="font-[family-name:var(--gnr-font-display)] text-[10px] uppercase tracking-widest text-[var(--gnr-muted)]">
+                          {show.event_title}
                         </span>
                       )}
-                    </span>
+                    </div>
                     {show.location !== 'Private Event' && (
                       <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)] sm:ml-auto shrink-0">
                         {show.location ?? 'Location: TBD'}

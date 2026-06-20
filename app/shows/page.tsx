@@ -81,13 +81,13 @@ function splitShows(shows: Show[]): { upcoming: Show[]; past: Show[] } {
 }
 
 const SAMPLE_SHOWS: Show[] = [
-  { id: 's1', venue_name: 'The Brown Jug',        location: 'Peoria, IL',        event_date: '2026-07-12', event_time: '21:00:00', event_end_time: null,       status: 'confirmed', notes: null,                 event_title: null },
-  { id: 's2', venue_name: 'Corner Inn',            location: 'Hanna City, IL',    event_date: '2026-07-19', event_time: '20:00:00', event_end_time: '23:00:00', status: 'confirmed', notes: 'All ages welcome',    event_title: null },
+  { id: 's1', venue_name: 'The Brown Jug',        location: 'Peoria, IL',        event_date: '2026-07-12', event_time: '21:00:00', event_end_time: null,       status: 'confirmed', notes: null,                 event_title: 'The Brown Jug' },
+  { id: 's2', venue_name: 'Corner Inn',            location: 'Hanna City, IL',    event_date: '2026-07-19', event_time: '20:00:00', event_end_time: '23:00:00', status: 'confirmed', notes: 'All ages welcome',    event_title: 'Corner Inn' },
   { id: 's3', venue_name: 'Kickapoo Creek Saloon', location: 'Edwards, IL',       event_date: '2026-08-02', event_time: '20:30:00', event_end_time: null,       status: 'confirmed', notes: null,                 event_title: 'Summer Bash' },
-  { id: 's4', venue_name: 'Crusens',               location: 'Peoria, IL',        event_date: '2026-08-16', event_time: '21:00:00', event_end_time: null,       status: 'confirmed', notes: 'Outdoor stage',      event_title: null },
-  { id: 's5', venue_name: 'The Nickel Plate',      location: 'Farmington, IL',    event_date: '2026-06-14', event_time: '20:00:00', event_end_time: null,       status: 'completed', notes: null,                 event_title: null },
-  { id: 's6', venue_name: "Oz's Bar & Grill",      location: 'Creve Coeur, IL',   event_date: '2026-05-22', event_time: '21:00:00', event_end_time: null,       status: 'completed', notes: null,                 event_title: null },
-  { id: 's7', venue_name: 'Burnzee\'s Bar & Grill',location: 'Peoria, IL',        event_date: '2026-05-08', event_time: '20:00:00', event_end_time: null,       status: 'completed', notes: null,                 event_title: null },
+  { id: 's4', venue_name: 'Crusens',               location: 'Peoria, IL',        event_date: '2026-08-16', event_time: '21:00:00', event_end_time: null,       status: 'confirmed', notes: 'Outdoor stage',      event_title: 'Crusens' },
+  { id: 's5', venue_name: 'The Nickel Plate',      location: 'Farmington, IL',    event_date: '2026-06-14', event_time: '20:00:00', event_end_time: null,       status: 'completed', notes: null,                 event_title: 'The Nickel Plate' },
+  { id: 's6', venue_name: "Oz's Bar & Grill",      location: 'Creve Coeur, IL',   event_date: '2026-05-22', event_time: '21:00:00', event_end_time: null,       status: 'completed', notes: null,                 event_title: "Oz's Bar & Grill" },
+  { id: 's7', venue_name: 'Burnzee\'s Bar & Grill',location: 'Peoria, IL',        event_date: '2026-05-08', event_time: '20:00:00', event_end_time: null,       status: 'completed', notes: null,                 event_title: 'Burnzee\'s Bar & Grill' },
 ]
 
 export default async function ShowsPage() {
@@ -165,14 +165,16 @@ export default async function ShowsPage() {
                       </span>
 
                       {show.location !== 'Private Event' && (
-                        <span className={`font-[family-name:var(--gnr-font-display)] uppercase tracking-wide text-[var(--gnr-text)] ${isNext ? 'text-2xl sm:text-3xl' : 'text-lg'}`}>
-                          {show.venue_name ?? 'Venue: TBD'}
+                        <div className="flex flex-col gap-0.5">
+                          <span className={`font-[family-name:var(--gnr-font-display)] uppercase tracking-wide text-[var(--gnr-text)] ${isNext ? 'text-2xl sm:text-3xl' : 'text-lg'}`}>
+                            {show.venue_name ?? 'Venue: TBD'}
+                          </span>
                           {show.event_title && (
-                            <span className="font-[family-name:var(--gnr-font-display)] text-[var(--gnr-muted)] ml-3" style={{ fontSize: '0.55em', verticalAlign: 'middle' }}>
-                              — {show.event_title}
+                            <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">
+                              {show.event_title}
                             </span>
                           )}
-                        </span>
+                        </div>
                       )}
 
                       <div className="flex flex-wrap gap-x-6 gap-y-1">

@@ -41,9 +41,9 @@ async function getUpcomingShows(): Promise<Show[]> {
 export default async function HomePage() {
   const upcomingShows = process.env.NODE_ENV === 'development'
     ? [
-        { id: 'mock-1', event_date: '2025-08-02', venue_name: 'The Rusty Spur Saloon', event_time: '20:00:00', event_end_time: null, status: 'confirmed' as const, notes: null, location: 'Peoria, IL' },
-        { id: 'mock-2', event_date: '2025-08-09', venue_name: 'Nickel Plate Bar & Grill', event_time: '21:00:00', event_end_time: null, status: 'confirmed' as const, notes: null, location: 'Hanna City, IL' },
-        { id: 'mock-3', event_date: '2025-08-16', venue_name: 'Yates City Harvest Home Festival', event_time: '18:00:00', event_end_time: null, status: 'confirmed' as const, notes: null, location: 'Yates City, IL' },
+        { id: 'mock-1', event_date: '2025-08-02', venue_name: 'The Rusty Spur Saloon', event_time: '20:00:00', event_end_time: null, status: 'confirmed' as const, notes: null, location: 'Peoria, IL', event_title: 'The Rusty Spur Saloon' },
+        { id: 'mock-2', event_date: '2025-08-09', venue_name: 'Nickel Plate Bar & Grill', event_time: '21:00:00', event_end_time: null, status: 'confirmed' as const, notes: null, location: 'Hanna City, IL', event_title: 'Nickel Plate Bar & Grill' },
+        { id: 'mock-3', event_date: '2025-08-16', venue_name: 'Yates City Harvest Home Festival', event_time: '18:00:00', event_end_time: null, status: 'confirmed' as const, notes: null, location: 'Yates City, IL', event_title: 'Harvest Home Festival' },
       ]
     : await getUpcomingShows()
 
@@ -126,10 +126,15 @@ export default async function HomePage() {
                         </span>
                       )}
                     </div>
-                    <div className="mt-2 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                    <div className="mt-2 flex flex-col gap-0.5">
                       <p className="font-[family-name:var(--gnr-font-display)] text-xl sm:text-2xl uppercase tracking-wide text-[var(--gnr-text)]">
                         {show.venue_name ?? 'TBA'}
                       </p>
+                      {show.event_title && (
+                        <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">
+                          {show.event_title}
+                        </span>
+                      )}
                       {show.location && (
                         <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">
                           {show.location}
