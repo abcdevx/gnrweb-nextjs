@@ -30,6 +30,48 @@ function formatTime(timeStr: string | null): string {
   return `${hour}:${String(m).padStart(2, '0')} ${ampm}`
 }
 
+const FIXED_HOLIDAYS: Record<string, string> = {
+  '01-01': "New Year's Day",
+  '06-19': 'Juneteenth',
+  '07-04': 'Independence Day',
+  '11-11': "Veterans Day",
+  '12-25': 'Christmas',
+  '12-31': "New Year's Eve",
+}
+
+function getNthWeekday(year: number, month: number, weekday: number, n: number): string {
+  const d = new Date(year, month - 1, 1)
+  let count = 0
+  while (true) {
+    if (d.getDay() === weekday) { count++; if (count === n) break }
+    d.setDate(d.getDate() + 1)
+  }
+  return `${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+}
+
+function getLastWeekday(year: number, month: number, weekday: number): string {
+  const d = new Date(year, month, 0)
+  while (d.getDay() !== weekday) d.setDate(d.getDate() - 1)
+  return `${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+}
+
+function getHoliday(dateStr: string | null): string | null {
+  if (!dateStr) return null
+  const [yearStr, mm, dd] = dateStr.split('-')
+  const year = Number(yearStr)
+  const mmdd = `${mm}-${dd}`
+  if (FIXED_HOLIDAYS[mmdd]) return FIXED_HOLIDAYS[mmdd]
+  const floating: Record<string, string> = {
+    [getNthWeekday(year, 1, 1, 3)]:  'Martin Luther King Jr. Day',
+    [getNthWeekday(year, 2, 1, 3)]:  "Presidents' Day",
+    [getLastWeekday(year, 5, 1)]:    'Memorial Day',
+    [getNthWeekday(year, 9, 1, 1)]:  'Labor Day',
+    [getNthWeekday(year, 10, 1, 2)]: 'Columbus Day',
+    [getNthWeekday(year, 11, 4, 4)]: 'Thanksgiving',
+  }
+  return floating[mmdd] ?? null
+}
+
 function splitShows(shows: Show[]): { upcoming: Show[]; past: Show[] } {
   const today = new Date().toISOString().split('T')[0]
   return {
@@ -112,6 +154,11 @@ export default async function ShowsPage() {
                           Next Show
                         </span>
                       )}
+                      {(() => { const h = getHoliday(show.event_date); return h ? (
+                        <span className="absolute bottom-0 right-0 font-[family-name:var(--gnr-font-display)] text-[9px] uppercase tracking-widest px-3 py-1 bg-[var(--gnr-surface)] border-l border-t border-[var(--gnr-border)] text-[var(--gnr-brand)]">
+                          🎉 {h}
+                        </span>
+                      ) : null })()} 
 
                       <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-brand)]">
                         {formatDate(show.event_date)}
