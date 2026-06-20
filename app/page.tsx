@@ -5,6 +5,7 @@ import { getShows } from '@/lib/soundcheck'
 import type { Show } from '@/types'
 import RotatingText from '@/components/RotatingText'
 import PhotoCollage from '@/components/PhotoCollage'
+import { FaMapMarkerAlt } from 'react-icons/fa'
 
 export const dynamic = 'force-dynamic'
 
@@ -105,44 +106,73 @@ export default async function HomePage() {
             <p className="text-center text-[var(--gnr-muted)]">No upcoming shows at this time. Check back soon!</p>
           ) : (
             <>
-              <ul className="space-y-4">
-                {upcomingShows.map((show) => (
-                  <li
-                    key={show.id}
-                    className="relative px-6 py-5 rounded-sm"
-                    style={{
-                      background: 'rgba(255,255,255,0.03)',
-                      border: '1px solid rgba(var(--gnr-brand-rgb, 212,175,55), 0.35)',
-                      boxShadow: '0 0 18px rgba(212,175,55,0.08), inset 0 0 30px rgba(212,175,55,0.03)',
-                    }}
-                  >
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6">
-                      <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-brand)]">
-                        {formatDate(show.event_date)}
-                      </span>
-                      {show.event_time && (
-                        <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)] sm:ml-auto">
-                          {formatTime(show.event_time)}
-                        </span>
-                      )}
-                    </div>
-                    <div className="mt-2 flex flex-col gap-0.5">
-                      <p className="font-[family-name:var(--gnr-font-display)] text-xl sm:text-2xl uppercase tracking-wide text-[var(--gnr-text)]">
-                        {show.venue_name ?? 'TBA'}
-                      </p>
-                      {show.event_title && (
-                        <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">
-                          {show.event_title}
-                        </span>
-                      )}
-                      {show.location && (
-                        <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">
-                          {show.location}
-                        </span>
-                      )}
-                    </div>
-                  </li>
-                ))}
+              <ul className="space-y-3">
+                {upcomingShows.map((show, i) => {
+                  const isFirst = i === 0
+                  const isPrivate = show.location === 'Private Event'
+                  return (
+                    <li
+                      key={show.id}
+                      className="relative overflow-hidden flex gap-0"
+                      style={isFirst ? {
+                        background: 'rgba(200,169,81,0.06)',
+                        border: '1px solid rgba(200,169,81,0.35)',
+                        boxShadow: '0 0 28px rgba(200,169,81,0.08)',
+                      } : {
+                        background: 'rgba(255,255,255,0.02)',
+                        border: '1px solid var(--gnr-border)',
+                      }}
+                    >
+                      {/* Left gold accent bar */}
+                      <div
+                        className="shrink-0 w-1"
+                        style={{ background: isFirst ? 'var(--gnr-brand)' : 'var(--gnr-border)' }}
+                      />
+
+                      <div className="flex flex-col gap-3 px-5 py-5 w-full min-w-0">
+
+                        {/* Row 1: date · time */}
+                        <div className="flex items-center justify-between gap-4">
+                          <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-brand)]">
+                            {formatDate(show.event_date)}
+                            {!isPrivate && show.event_time && (
+                              <span className="text-[var(--gnr-muted)] mx-2">·</span>
+                            )}
+                            {!isPrivate && show.event_time && (
+                              <span className="text-[var(--gnr-muted)]">{formatTime(show.event_time)}</span>
+                            )}
+                          </span>
+                          {isFirst && (
+                            <span className="shrink-0 font-[family-name:var(--gnr-font-display)] text-[9px] uppercase tracking-widest px-2.5 py-1 bg-[var(--gnr-brand)] text-[var(--gnr-bg)]">
+                              Next Show
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Row 2: venue + event title */}
+                        <div className="flex flex-col gap-0.5">
+                          <p className="font-[family-name:var(--gnr-font-display)] text-xl sm:text-2xl uppercase tracking-wide text-[var(--gnr-text)] leading-tight">
+                            {isPrivate ? 'Private Event' : (show.venue_name ?? 'TBA')}
+                          </p>
+                          {!isPrivate && show.event_title && (
+                            <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">
+                              {show.event_title}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Row 3: location */}
+                        {show.location && (
+                          <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">
+                            <FaMapMarkerAlt className="inline mr-1.5" style={{ color: 'var(--gnr-brand)' }} />
+                            {show.location}
+                          </span>
+                        )}
+
+                      </div>
+                    </li>
+                  )
+                })}
               </ul>
               <div className="text-center mt-10">
                 <Link

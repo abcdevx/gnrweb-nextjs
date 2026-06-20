@@ -132,61 +132,78 @@ export default async function ShowsPage() {
             {upcoming.length === 0 ? (
               <p className="text-[var(--gnr-muted)]">No upcoming shows scheduled. Check back soon!</p>
             ) : (
-              <ul className="space-y-4">
+              <ul className="space-y-3">
                 {upcoming.map((show, i) => {
                   const isNext = i === 0
+                  const holiday = getHoliday(show.event_date)
+                  const isPrivate = show.location === 'Private Event'
                   return (
                     <li
                       key={show.id}
-                      className="relative overflow-hidden flex flex-col gap-2 px-6 py-6"
+                      className="relative overflow-hidden flex gap-0"
                       style={isNext ? {
-                        background: 'rgba(200,169,81,0.07)',
-                        border: '1px solid rgba(200,169,81,0.45)',
-                        boxShadow: '0 0 32px rgba(200,169,81,0.1), inset 0 0 40px rgba(200,169,81,0.04)',
+                        background: 'rgba(200,169,81,0.06)',
+                        border: '1px solid rgba(200,169,81,0.35)',
+                        boxShadow: '0 0 28px rgba(200,169,81,0.08)',
                       } : {
                         background: 'rgba(255,255,255,0.02)',
                         border: '1px solid var(--gnr-border)',
                       }}
                     >
-                      {/* Next show badge */}
-                      {isNext && (
-                        <span className="absolute top-0 right-0 font-[family-name:var(--gnr-font-display)] text-[10px] uppercase tracking-widest px-3 py-1 bg-[var(--gnr-brand)] text-[var(--gnr-bg)]">
-                          Next Show
-                        </span>
-                      )}
-                      {(() => { const h = getHoliday(show.event_date); return h ? (
-                        <span className="absolute bottom-0 right-0 font-[family-name:var(--gnr-font-display)] text-[9px] uppercase tracking-widest px-3 py-1 bg-[var(--gnr-surface)] border-l border-t border-[var(--gnr-border)] text-[var(--gnr-brand)]">
-                          🎉 {h}
-                        </span>
-                      ) : null })()} 
+                      {/* Left gold accent bar */}
+                      <div
+                        className="shrink-0 w-1"
+                        style={{ background: isNext ? 'var(--gnr-brand)' : 'var(--gnr-border)' }}
+                      />
 
-                      <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-brand)]">
-                        {formatDate(show.event_date)}
-                      </span>
+                      <div className="flex flex-col gap-3 px-5 py-5 w-full min-w-0">
 
-                      {show.location !== 'Private Event' && (
-                        <div className="flex flex-col gap-0.5">
-                          <span className={`font-[family-name:var(--gnr-font-display)] uppercase tracking-wide text-[var(--gnr-text)] ${isNext ? 'text-2xl sm:text-3xl' : 'text-lg'}`}>
-                            {show.venue_name ?? 'Venue: TBD'}
+                        {/* Row 1: date · time + Next Show badge */}
+                        <div className="flex items-center justify-between gap-4">
+                          <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-brand)]">
+                            {formatDate(show.event_date)}
+                            {!isPrivate && show.event_time && (
+                              <span className="text-[var(--gnr-muted)] mx-2">·</span>
+                            )}
+                            {!isPrivate && show.event_time && (
+                              <span className="text-[var(--gnr-muted)]">
+                                {formatTime(show.event_time)}
+                                {show.event_end_time && ` – ${formatTime(show.event_end_time)}`}
+                              </span>
+                            )}
                           </span>
-                          {show.event_title && (
+                          {isNext && (
+                            <span className="shrink-0 font-[family-name:var(--gnr-font-display)] text-[9px] uppercase tracking-widest px-2.5 py-1 bg-[var(--gnr-brand)] text-[var(--gnr-bg)]">
+                              Next Show
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Row 2: venue + event title */}
+                        <div className="flex flex-col gap-0.5">
+                          <span className={`font-[family-name:var(--gnr-font-display)] uppercase tracking-wide text-[var(--gnr-text)] leading-tight ${isNext ? 'text-2xl sm:text-3xl' : 'text-lg'}`}>
+                            {isPrivate ? 'Private Event' : (show.venue_name ?? 'Venue: TBD')}
+                          </span>
+                          {!isPrivate && show.event_title && (
                             <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">
                               {show.event_title}
                             </span>
                           )}
                         </div>
-                      )}
 
-                      <div className="flex flex-wrap gap-x-6 gap-y-1">
-                        <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">
-                          <FaMapMarkerAlt className="inline mr-1.5" style={{ color: 'var(--gnr-brand)' }} />{show.location ?? 'Location: TBD'}
-                        </span>
-                        {show.location !== 'Private Event' && (
+                        {/* Row 3: location left, holiday right */}
+                        <div className="flex items-center justify-between gap-4 flex-wrap">
                           <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">
-                            <FaClock className="inline mr-1.5" style={{ color: 'var(--gnr-brand)' }} />{show.event_time ? formatTime(show.event_time) : 'Time: TBD'}
-                            {show.event_time && show.event_end_time && ` – ${formatTime(show.event_end_time)}`}
+                            <FaMapMarkerAlt className="inline mr-1.5" style={{ color: 'var(--gnr-brand)' }} />
+                            {show.location ?? 'Location: TBD'}
                           </span>
-                        )}
+                          {holiday && (
+                            <span className="font-[family-name:var(--gnr-font-display)] text-[9px] uppercase tracking-widest text-[var(--gnr-brand)]">
+                              🎉 {holiday}
+                            </span>
+                          )}
+                        </div>
+
                       </div>
                     </li>
                   )
