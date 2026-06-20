@@ -42,7 +42,7 @@ export default function RootLayout({
               <a href={siteConfig.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-[var(--gnr-muted)] hover:text-[var(--gnr-brand)] transition-colors"><FaYoutube size={22} /></a>
             )}
           </div>
-          <p>© {new Date().getFullYear()} Good n&apos; Rowdy. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Good N&apos; Rowdy Band. All rights reserved.</p>
         </footer>
       </body>
     </html>

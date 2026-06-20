@@ -2,6 +2,7 @@ import { siteConfig } from '@/config/site'
 import { getShows } from '@/lib/soundcheck'
 import type { Metadata } from 'next'
 import type { Show } from '@/types'
+import Image from 'next/image'
 import { FaMapMarkerAlt, FaClock } from 'react-icons/fa'
 import PastShows from '@/components/PastShows'
 
@@ -108,8 +109,10 @@ export default async function ShowsPage() {
     <div className="relative">
 
       {/* Subhero */}
-      <div className="relative border-b border-[var(--gnr-border)] h-40 sm:h-52 flex items-end justify-center bg-[var(--gnr-surface)]">
-        <h1 className="text-5xl sm:text-6xl pb-4">Shows</h1>
+      <div className="relative border-b border-[var(--gnr-border)] h-64 sm:h-80 flex items-center justify-center overflow-hidden">
+        <Image src="/photos/The Band.jpg" alt="Good n' Rowdy" fill className="object-cover" style={{ objectPosition: 'center 25%' }} priority sizes="100vw" quality={90} />
+        <div className="absolute inset-0 bg-black/55" />
+        <h1 className="absolute bottom-4 left-0 right-0 text-center text-5xl sm:text-6xl text-white z-10">Shows</h1>
       </div>
 
       {/* Content area with brushed metal background */}

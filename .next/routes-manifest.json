@@ -48,6 +48,18 @@
       "namedRegex": "^/about(?:/)?$"
     },
     {
+      "page": "/book",
+      "regex": "^/book(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/book(?:/)?$"
+    },
+    {
+      "page": "/merch",
+      "regex": "^/merch(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/merch(?:/)?$"
+    },
+    {
       "page": "/shows",
       "regex": "^/shows(?:/)?$",
       "routeKeys": {},
