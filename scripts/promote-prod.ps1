@@ -1,12 +1,20 @@
-﻿$ErrorActionPreference = "Stop"
+﻿param(
+    [switch]$Force
+)
+
+$ErrorActionPreference = "Stop"
 
 Write-Host ""
 Write-Host "*** PRODUCTION DEPLOY ***" -ForegroundColor Red
 Write-Host "This will push the current build to goodnrowdy.com." -ForegroundColor Yellow
-$confirm = Read-Host "Have you tested staging.goodnrowdy.com and confirmed it is ready? (yes/no)"
-if ($confirm -ne "yes") {
-    Write-Host "Aborted." -ForegroundColor Red
-    exit 1
+if ($Force) {
+    Write-Host "Auto-confirmed via -Force flag." -ForegroundColor Yellow
+} else {
+    $confirm = Read-Host "Have you tested staging.goodnrowdy.com and confirmed it is ready? (yes/no)"
+    if ($confirm -ne "yes") {
+        Write-Host "Aborted." -ForegroundColor Red
+        exit 1
+    }
 }
 
 Write-Host "Force-updating prod branch to match main..." -ForegroundColor Cyan
