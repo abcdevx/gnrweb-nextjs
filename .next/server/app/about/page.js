@@ -1,8 +1,9 @@
 var R=require("../../chunks/ssr/[turbopack]_runtime.js")("server/app/about/page.js")
-R.c("server/chunks/ssr/[root-of-the-server]__1y5vszg._.js")
-R.c("server/chunks/ssr/node_modules_next_dist_esm_build_templates_app-page_00woy8-.js")
-R.c("server/chunks/ssr/[root-of-the-server]__125ijrn._.js")
-R.c("server/chunks/ssr/[root-of-the-server]__0100oqz._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__1pr0dbr._.js")
+R.c("server/chunks/ssr/node_modules_next_dist_0xaccoz._.js")
+R.c("server/chunks/ssr/node_modules_next_dist_esm_build_templates_app-page_0lnp56n.js")
+R.c("server/chunks/ssr/[root-of-the-server]__0bqml2m._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__0g84hko._.js")
 R.c("server/chunks/ssr/_13ynqoo._.js")
 R.c("server/chunks/ssr/node_modules_react-icons_fa_index_mjs_14_fr56._.js")
 R.c("server/chunks/ssr/node_modules_next_dist_client_components_0wpq8j3._.js")
@@ -10,5 +11,5 @@ R.c("server/chunks/ssr/node_modules_next_dist_client_components_builtin_forbidde
 R.c("server/chunks/ssr/node_modules_next_dist_client_components_builtin_unauthorized_0l_sp0x.js")
 R.c("server/chunks/ssr/node_modules_next_dist_client_components_builtin_global-error_0-o-goa.js")
 R.c("server/chunks/ssr/_next-internal_server_app_about_page_actions_0xvgj07.js")
-R.m(14094)
-module.exports=R.m(14094).exports
+R.m(32871)
+module.exports=R.m(32871).exports

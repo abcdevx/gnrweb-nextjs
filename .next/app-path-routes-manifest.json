@@ -3,6 +3,7 @@
   "/_not-found/page": "/_not-found",
   "/about/page": "/about",
   "/book/page": "/book",
+  "/icon.png/route": "/icon.png",
   "/merch/page": "/merch",
   "/page": "/",
   "/shows/page": "/shows"

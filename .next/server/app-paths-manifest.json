@@ -3,6 +3,7 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/about/page": "app/about/page.js",
   "/book/page": "app/book/page.js",
+  "/icon.png/route": "app/icon.png/route.js",
   "/merch/page": "app/merch/page.js",
   "/page": "app/page.js",
   "/shows/page": "app/shows/page.js"

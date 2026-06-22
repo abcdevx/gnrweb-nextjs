@@ -54,6 +54,12 @@
       "namedRegex": "^/book(?:/)?$"
     },
     {
+      "page": "/icon.png",
+      "regex": "^/icon\\.png(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/icon\\.png(?:/)?$"
+    },
+    {
       "page": "/merch",
       "regex": "^/merch(?:/)?$",
       "routeKeys": {},
