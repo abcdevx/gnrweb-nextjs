@@ -2,14 +2,13 @@
 
 $currentBranch = git rev-parse --abbrev-ref HEAD
 if ($currentBranch -ne "main") {
-    Write-Host "Switching to main branch..." -ForegroundColor Cyan
     git checkout main
 }
 
 Write-Host "Building Next.js app..." -ForegroundColor Cyan
 npm run build
 
-Write-Host "Committing build output to main..." -ForegroundColor Cyan
+Write-Host "Committing build output..." -ForegroundColor Cyan
 git add .next/
 git add -A
 
@@ -19,11 +18,14 @@ if ($status) {
     git commit -m "chore(staging): build deploy $timestamp"
 }
 
-Write-Host "Force-updating staging to match main..." -ForegroundColor Cyan
+Write-Host "Pushing to GitHub..." -ForegroundColor Cyan
 git branch -f staging main
 git push origin main
 git push origin staging --force
 
+Write-Host "Pulling to staging server..." -ForegroundColor Cyan
+ssh gnr-hosting "cd /home/goodsmux/staging.goodnrowdy.com && git fetch origin && git reset --hard origin/staging && touch tmp/restart.txt"
+
 Write-Host ""
-Write-Host "Done! cPanel will now auto-deploy to staging.goodnrowdy.com." -ForegroundColor Green
-Write-Host "Check staging.goodnrowdy.com to verify, then run: .\scripts\promote-prod.ps1" -ForegroundColor Yellow
+Write-Host "Done! staging.goodnrowdy.com is live." -ForegroundColor Green
+Write-Host "Check https://staging.goodnrowdy.com, then run: .\scripts\promote-prod.ps1" -ForegroundColor Yellow
