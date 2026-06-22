@@ -115,7 +115,7 @@ export const siteConfig = {
   },
 
   seo: {
-    title: 'Good n\' Rowdy | Cover Band',
+    title: 'Good N\' Rowdy Band',
     description: 'Good n\' Rowdy — High-energy cover band. Book us for your next event.',
     url: 'https://goodnrowdy.com',
   },
