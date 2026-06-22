@@ -3,7 +3,8 @@ node_modules/
 .pnp
 .pnp.js
 
-# next.js
+# next.js — exclude cache/dev, but COMMIT the build output for cPanel deploys
+.next/cache/
 .next/dev/
 out/
 

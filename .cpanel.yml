@@ -2,8 +2,10 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/goodsmux/staging.goodnrowdy.com
-    - /usr/bin/rsync -aq --exclude='.git/' --exclude='node_modules/' . $DEPLOYPATH
+    - /usr/bin/rsync -aq --delete --exclude='.git/' --exclude='node_modules/' --exclude='.next/cache/' . $DEPLOYPATH
+    - find $DEPLOYPATH/.next -type d -exec chmod 755 {} \;
+    - find $DEPLOYPATH/.next -type f -exec chmod 644 {} \;
     - chmod 755 $DEPLOYPATH
-    - chmod 755 $DEPLOYPATH/.next $DEPLOYPATH/.next/server $DEPLOYPATH/.next/server/chunks $DEPLOYPATH/.next/server/chunks/ssr $DEPLOYPATH/.next/server/app $DEPLOYPATH/.next/static $DEPLOYPATH/.next/static/chunks
     - export HOME=/home/goodsmux
     - cd $DEPLOYPATH && /home/goodsmux/nodevenv/staging.goodnrowdy.com/20/bin/npm install --omit=dev
+    - touch $DEPLOYPATH/tmp/restart.txt

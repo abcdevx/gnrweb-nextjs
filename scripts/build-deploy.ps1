@@ -1,49 +1,55 @@
-# build-deploy.ps1
-# Builds the Next.js app and assembles the deployment package.
+# deploy-staging.ps1
+# Builds the Next.js app locally, commits the build output, and pushes to the
+# 'staging' branch — which triggers cPanel's Git Version Control auto-deploy
+# to staging.goodnrowdy.com.
 #
 # Usage: .\scripts\build-deploy.ps1
 #
-# Output: deploy/ folder ready to upload to cPanel via FTP or File Manager.
+# Prerequisites:
+#   - A 'staging' branch exists on origin (created by this script on first run)
+#   - cPanel Git Version Control is set to track the 'staging' branch for
+#     the staging.goodnrowdy.com Node.js app
 
 $ErrorActionPreference = "Stop"
 
+# ── 1. Ensure we are on the staging branch ───────────────────────────────────
+$currentBranch = git rev-parse --abbrev-ref HEAD
+if ($currentBranch -ne "staging") {
+    Write-Host "Switching to staging branch..." -ForegroundColor Cyan
+    $stagingExists = git branch --list "staging"
+    if ($stagingExists) {
+        git checkout staging
+    } else {
+        git checkout -b staging
+    }
+}
+
+# ── 2. Merge latest from main so staging is up to date ───────────────────────
+Write-Host "Merging latest main into staging..." -ForegroundColor Cyan
+git merge main --no-edit
+
+# ── 3. Build ──────────────────────────────────────────────────────────────────
 Write-Host "Building Next.js app..." -ForegroundColor Cyan
 npm run build
 
-Write-Host "Assembling deploy package..." -ForegroundColor Cyan
+# ── 4. Stage build output and push ───────────────────────────────────────────
+Write-Host "Staging build output for commit..." -ForegroundColor Cyan
+git add .next/
+git add -A
 
-# Clean old deploy folder
-if (Test-Path "deploy") { Remove-Item -Recurse -Force "deploy" }
-New-Item -ItemType Directory -Path "deploy" | Out-Null
-
-# Copy built output
-Copy-Item -Recurse -Force ".next" "deploy/.next"
-
-# Copy source files needed by next start
-Copy-Item -Recurse -Force "app" "deploy/app"
-Copy-Item -Recurse -Force "config" "deploy/config"
-Copy-Item -Recurse -Force "lib" "deploy/lib"
-Copy-Item -Recurse -Force "types" "deploy/types"
-Copy-Item -Recurse -Force "components" "deploy/components"
-if (Test-Path "public") { Copy-Item -Recurse -Force "public" "deploy/public" }
-
-# Copy config files
-Copy-Item -Force "package.json" "deploy/package.json"
-Copy-Item -Force "next.config.ts" "deploy/next.config.ts"
-Copy-Item -Force "tsconfig.json" "deploy/tsconfig.json"
-Copy-Item -Force "postcss.config.mjs" "deploy/postcss.config.mjs"
-
-Copy-Item -Force "start.js" "deploy/start.js"
-
-# node_modules is intentionally excluded — CloudLinux creates it via npm install in venv
+$status = git status --porcelain
+if ($status) {
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm"
+    git commit -m "chore(staging): build deploy $timestamp"
+    Write-Host "Pushing staging branch to origin..." -ForegroundColor Cyan
+    git push origin staging
+    Write-Host ""
+    Write-Host "Done! cPanel will now auto-deploy to staging.goodnrowdy.com." -ForegroundColor Green
+    Write-Host "Check cPanel > Git Version Control > Manage > Deploy to confirm." -ForegroundColor Yellow
+} else {
+    Write-Host ""
+    Write-Host "No changes to deploy — staging is already up to date." -ForegroundColor Yellow
+}
 
 Write-Host ""
-Write-Host "Done! Upload the contents of the 'deploy/' folder to your cPanel subdomain directory." -ForegroundColor Green
-Write-Host ""
-Write-Host "Then in cPanel > Setup Node.js App:" -ForegroundColor Yellow
-Write-Host "  - Node version: 20.x"
-Write-Host "  - Application mode: Production"
-Write-Host "  - Application root: staging.goodnrowdy.com"
-Write-Host "  - Application startup file: start.js"
-Write-Host "  - Environment variables: SOUNDCHECK_API_URL, SOUNDCHECK_API_KEY, NODE_ENV=production"
-Write-Host "  - Click Run NPM Install, then Start App"
+Write-Host "When staging looks good, run: .\scripts\promote-prod.ps1" -ForegroundColor Cyan
