@@ -24,7 +24,7 @@ git push origin main
 git push origin staging --force
 
 Write-Host "Pulling to staging server..." -ForegroundColor Cyan
-ssh gnr-hosting "cd /home/goodsmux/staging.goodnrowdy.com && git fetch origin && git reset --hard origin/staging && rm -rf .next/cache && pkill -f 'staging.goodnrowdy.com' ; sleep 15 && curl -s -o /dev/null -w 'HTTP %{http_code}' https://staging.goodnrowdy.com"
+ssh gnr-hosting "cd /home/goodsmux/staging.goodnrowdy.com && git fetch origin && git reset --hard origin/staging && rm -rf .next/cache && pkill -f 'staging.goodnrowdy.com' ; sleep 20 && curl -s -o /dev/null -w 'HTTP %{http_code}' https://staging.goodnrowdy.com"
 
 Write-Host ""
 Write-Host "Done! staging.goodnrowdy.com is live." -ForegroundColor Green

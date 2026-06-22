@@ -8,7 +8,7 @@
  */
 
 export const siteConfig = {
-  bandName: 'Good n\' Rowdy',
+  bandName: 'Good N\' Rowdy',
   tagline: 'Your favorite cover band',
   description: 'Good N\' Rowdy is a country and southern rock band out of Central Illinois.',
   location: {
@@ -116,7 +116,7 @@ export const siteConfig = {
 
   seo: {
     title: 'Good N\' Rowdy Band',
-    description: 'Good n\' Rowdy — High-energy cover band. Book us for your next event.',
+    description: 'Good N\' Rowdy — High-energy cover band. Book us for your next event.',
     url: 'https://goodnrowdy.com',
   },
 }
