@@ -57,26 +57,29 @@ export default function MerchPage() {
               </div>
             </li>
 
-            {/* T-Shirt — coming soon */}
-            <li className="flex flex-col border border-[var(--gnr-border)] bg-[var(--gnr-surface)] overflow-hidden opacity-60">
+            {/* T-Shirt */}
+            <li className="flex flex-col border border-[var(--gnr-border)] bg-[var(--gnr-surface)] overflow-hidden">
               <div className="relative w-full h-64 bg-black">
                 <Image src="/merch/T-shirt.png" alt="Good n' Rowdy T-Shirt" fill className="object-contain" sizes="(max-width:640px) 100vw, 50vw" />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                  <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest px-3 py-1.5 border border-[var(--gnr-muted)] text-[var(--gnr-muted)]">
-                    Coming Soon
-                  </span>
-                </div>
               </div>
               <div className="flex flex-col gap-3 p-5 border-t border-[var(--gnr-border)]">
                 <div className="flex items-baseline justify-between gap-2">
                   <p className="font-[family-name:var(--gnr-font-display)] text-lg uppercase tracking-wide text-[var(--gnr-text)]">
                     T-Shirt
                   </p>
-                  <span className="font-[family-name:var(--gnr-font-display)] text-xs uppercase tracking-widest text-[var(--gnr-muted)]">TBD</span>
+                  <span className="font-[family-name:var(--gnr-font-display)] text-lg text-[var(--gnr-brand)]">$29</span>
                 </div>
                 <p className="font-[family-name:var(--gnr-font-display)] text-[10px] uppercase tracking-widest text-[var(--gnr-muted)]">
-                  Not yet available
+                  S – XXL · Mens, Womens, Youth · Pre-order · Prepay Only
                 </p>
+                <a
+                  href={FACEBOOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-gold text-center font-[family-name:var(--gnr-font-display)] uppercase tracking-widest text-xs px-5 py-2.5 hover:opacity-90 transition-opacity mt-1"
+                >
+                  Message Us to Order
+                </a>
               </div>
             </li>
 
