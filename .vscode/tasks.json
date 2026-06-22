@@ -1,0 +1,53 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Pipeline Status",
+      "type": "shell",
+      "command": ".\\scripts\\pipeline-status.ps1",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true,
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Deploy to Staging",
+      "type": "shell",
+      "command": ".\\scripts\\build-deploy.ps1",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true,
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Promote to Production",
+      "type": "shell",
+      "command": ".\\scripts\\promote-prod.ps1",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true,
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Dev Preview (localhost)",
+      "type": "shell",
+      "command": "npm run dev",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true,
+        "focus": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
